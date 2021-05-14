@@ -26,3 +26,10 @@ class Consumer(models.Model):
     name = models.CharField(max_length=20, null=True)
     phone = models.CharField(max_length=20, null=True)
     address = models.CharField(max_length=20, null=True)
+
+class Oder(models.Model):
+    id = models.IntegerField(primary_key=True)
+    # store = models.ForeignKey(Store, on_delete=models.CASCADE, primary_key=False)
+    deliver = models.ForeignKey(Deliver, on_delete=models.CASCADE, primary_key=False, null=True)
+    consumer = models.ForeignKey(Consumer, on_delete=models.CASCADE, primary_key=False)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, primary_key=False)
