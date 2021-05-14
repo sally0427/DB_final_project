@@ -20,9 +20,16 @@ from uber_eat import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('test/', views.test, name ='test'),
+    path('add_store_get/', views.add_store_get, name ='add_store_get'),
     path('add_store/', views.add_store, name ='add_store'),
+    path('add_product_get/', views.add_product_get, name ='add_product_get'),
     path('add_product/', views.add_product, name ='add_product'),
-    path('add_oder/', views.add_oder, name ='add_oder'),
+    path('add_consumer_get/', views.add_consumer_get, name ='add_consumer_get'),
     path('add_consumer/', views.add_consumer, name ='add_consumer'),
+    path('add_deliver_get/', views.add_deliver_get, name ='add_deliver_get'),
     path('add_deliver/', views.add_deliver, name ='add_deliver'),
+    path('add_order/', views.add_order, name ='add_order'),
+    path('add_ordergoods/', views.add_ordergoods, name ='add_ordergoods'),
+    
+    
 ]
