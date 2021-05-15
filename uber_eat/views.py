@@ -5,7 +5,6 @@ from django.http import HttpResponse
 def test(request):
     return render(request, "index.html")
 
-
 def add_store(request):
     return render(request, "add_store.html")
 
@@ -65,3 +64,14 @@ def del_consumer(request):
 def del_consumer_post(request):
     delConsumer = Consumer.objects.filter(id = request.POST['id']).delete()
     return HttpResponse('<p>Del consumer</p>')
+
+def del_deliver(request):
+    return render(request, "del_deliver.html")
+
+def del_deliver_post(request):
+    delDeliver = Deliver.objects.filter(id = request.POST['id']).delete()
+    return HttpResponse('<p>Del deliver</p>')
+
+def show_store(request):
+    showStore = Store.objects.filter().all()
+    return HttpResponse('<p>Add store</p>')

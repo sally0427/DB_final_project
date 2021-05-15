@@ -35,5 +35,7 @@ urlpatterns = [
     path('del_product/', views.del_product, name ='del_product'),
     path('del_product_post/', views.del_product_post, name ='del_product_post'),
     path('del_consumer/', views.del_consumer, name ='del_consumer'),
-    path('del_consumer_post/', views.del_consumer_post, name ='del_consumer_post'),  
+    path('del_consumer_post/', views.del_consumer_post, name ='del_consumer_post'), 
+    path('del_deliver/', views.del_deliver, name ='del_deliver'),
+    path('del_deliver_post/', views.del_deliver_post, name ='del_deliver_post'),  
 ]
