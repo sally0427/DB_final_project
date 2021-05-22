@@ -12,7 +12,7 @@ class Store(models.Model):
 
 class Product(models.Model):
     Pid = models.IntegerField(primary_key=True)
-    Sid = models.ForeignKey(Store, on_delete=models.CASCADE, primary_key=False)
+    S = models.ForeignKey(Store, on_delete=models.CASCADE, primary_key=False)
     Pname = models.CharField(max_length=20, null=True)
     Ptime = models.DateField(null=True)
     Pprice =  models.IntegerField(null=True)
@@ -42,9 +42,9 @@ class Order(models.Model):
 
     Oid = models.IntegerField(primary_key=True)
     # store = models.ForeignKey(Store, on_delete=models.CASCADE, primary_key=False)
-    Cid = models.ForeignKey(Consumer, on_delete=models.CASCADE, primary_key=False, null=False)
-    Sid = models.ForeignKey(Store, on_delete=models.CASCADE, null=False)
-    Did = models.ForeignKey(Deliver, on_delete=models.CASCADE, primary_key=False, null=True)
+    C = models.ForeignKey(Consumer, on_delete=models.CASCADE, primary_key=False, null=False)
+    S = models.ForeignKey(Store, on_delete=models.CASCADE, null=False)
+    D = models.ForeignKey(Deliver, on_delete=models.CASCADE, primary_key=False, null=True)
     Ocount = models.IntegerField(default=0, verbose_name='商品數量')
     Oprice = models.IntegerField(default=0, verbose_name='商品總價')
     Ostatus = models.SmallIntegerField(choices=ORDER_STATUS_CHOICES, default=1, verbose_name='訂單狀態')
@@ -52,6 +52,6 @@ class Order(models.Model):
 
 class OrderGoods(models.Model):
     OGid = models.IntegerField(primary_key=True)
-    Oid = models.ForeignKey(Order, on_delete=models.CASCADE, null=False)
-    Pid = models.ForeignKey(Product, on_delete=models.CASCADE, primary_key=False)
+    O = models.ForeignKey(Order, on_delete=models.CASCADE, null=False)
+    P = models.ForeignKey(Product, on_delete=models.CASCADE, primary_key=False)
     OGcount = models.IntegerField(default=1, verbose_name='商品數量')
