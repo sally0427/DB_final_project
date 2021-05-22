@@ -74,4 +74,4 @@ def del_deliver_post(request):
 
 def show_store(request):
     showStore = Store.objects.filter().all()
-    return HttpResponse('<p>Add store</p>')
+    return render(request, 'show_store.html', {'data': showStore})

@@ -1,13 +1,2 @@
-<div class="store">
-	<a href="store/" class="img-prod"><img class="img-fluid" src="/media/{{ products.0.img }}" alt="{{ products.0.name }}">
-		<span class="status">{{ products.0.tag }}</span>
-	</a>
-	<div class="text py-3 px-3">
-		<h3><a href="store/">{{ products.0.name }}</a></h3>
-		<div class="d-flex">
-			<div class="pricing">
-				<p class="price"><span class="mr-2 price-dc">${{ products.0.price }}</span><span class="price-sale">${{ products.0.sale_price }}</span></p>
-			</div>
-		</div>
-	</div>
-</div>
+{% for item in data%}
+<p>{{ item }}</p> {% endfor %}
