@@ -27,6 +27,8 @@ class Consumer(models.Model):
     Cname = models.CharField(max_length=20, null=True)
     Cphone = models.CharField(max_length=20, null=True)
     Caddress = models.CharField(max_length=20, null=True)
+    Cpassword = models.CharField(max_length=20, null=True)
+    Cemail = models.CharField(max_length=20, null=True)
 
 class Order(models.Model):
 
