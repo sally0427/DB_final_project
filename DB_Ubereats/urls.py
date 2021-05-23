@@ -15,27 +15,38 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from uber_eat import views
+from uber_eat import views, store, consumer, product, order
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('test/', views.test, name ='test'),
-    path('add_store/', views.add_store, name ='add_store'),
-    path('add_store_post/', views.add_store_post, name ='add_store_post'),
-    path('add_product/', views.add_product, name ='add_product'),
-    path('add_product_post/', views.add_product_post, name ='add_product_post'),
-    path('add_consumer/', views.add_consumer, name ='add_consumer'),
-    path('add_consumer_post/', views.add_consumer_post, name ='add_consumer_post'),
+    path('add_store/', store.add_store, name ='add_store'),
+    path('add_store_post/', store.add_store_post, name ='add_store_post'),
+    path('del_store/', store.del_store, name ='del_store'),
+    path('del_store_post/', store.del_store_post, name ='del_store_post'),   
+    path('show_store/', store.show_store, name ='show_store'),
+
+    path('add_product/', product.add_product, name ='add_product'),
+    path('add_product_post/', product.add_product_post, name ='add_product_post'),
+    path('del_product/', product.del_product, name ='del_product'),
+    path('del_product_post/', product.del_product_post, name ='del_product_post'),
+
+    path('add_consumer/', consumer.add_consumer, name ='add_consumer'),
+    path('add_consumer_post/', consumer.add_consumer_post, name ='add_consumer_post'),
+    path('del_consumer/', consumer.del_consumer, name ='del_consumer'),
+    path('del_consumer_post/', consumer.del_consumer_post, name ='del_consumer_post'), 
+
     path('add_deliver/', views.add_deliver, name ='add_deliver'),
     path('add_deliver_post/', views.add_deliver_post, name ='add_deliver_post'),
-    path('add_order_post/', views.add_order_post, name ='add_order_post'),
-    path('add_ordergoods_post/', views.add_ordergoods_post, name ='add_ordergoods_post'),
-    path('del_store/', views.del_store, name ='del_store'),
-    path('del_store_post/', views.del_store_post, name ='del_store_post'),   
-    path('del_product/', views.del_product, name ='del_product'),
-    path('del_product_post/', views.del_product_post, name ='del_product_post'),
-    path('del_consumer/', views.del_consumer, name ='del_consumer'),
-    path('del_consumer_post/', views.del_consumer_post, name ='del_consumer_post'), 
+
+
+    path('add_order/',order.add_order, name ='add_order'),
+    path('add_order_post/', order.add_order_post, name ='add_order_post'),
+    path('show_order/', order.show_order, name ='show_order'),
+    path('mod_Ostatus_post/', order.mod_Ostatus_post, name ='mod_Ostatus_post'),
+    path('mod_Odeliver_post/', order.mod_Odeliver_post, name ='mod_Odeliver_post'),
+
     path('del_deliver/', views.del_deliver, name ='del_deliver'),
-    path('del_deliver_post/', views.del_deliver_post, name ='del_deliver_post'),  
+    path('del_deliver_post/', views.del_deliver_post, name ='del_deliver_post'),
+
 ]
