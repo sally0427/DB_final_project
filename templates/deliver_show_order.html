@@ -6,8 +6,8 @@
  <body>
   <h2>顯示 order 資料表所有資料</h2>
   <table border="1" cellpadding="0" cellspacing="0">
-    <th>Oid</th><th>Ocreated</th><th>Saddress</th><th>Caddress</th><th>Stransit_price</th>
-   {% for order in data %}
+    <th>Oid</th><th>Saddress</th><th>Ocreated</th><th>Caddress</th><th>Cphone</th><th>Stransit_price</th>
+    {% for order in data %}
     <tr>
      <td>{{ order.Oid }} </td>
      <td>{{ order.Caddress }} </td>
@@ -16,7 +16,7 @@
      <td>{{ order.Cphone }} </td>
      <td>{{ order.Stransit_price }} </td>
     </tr>
-   {% endfor %}
+    {% endfor %}
   </table>
  </body>
 </html>

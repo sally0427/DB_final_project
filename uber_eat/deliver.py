@@ -22,8 +22,24 @@ def del_deliver_post(request):
     return HttpResponse('<p>Del deliver</p>')
 
 def deliver_show_order(request):
-    Orders = Order.objects.filter().get(Ostatus=2)
-    Sname = Store.objects.get(Sid = Orders.S_id).Sname
-    Cname = Consumer.objects.get(Cid = Orders.C_id).Cname
-    # context = {'Oid': Oid,'Ocount': Ocount,'Oprice': Oprice,'Ocreated': Ocreated,'Sname': Sname, 'Cname': Cname}
-    return render(request, 'deliver_show_order.html', {'data': Orders})
+    orders = Order.objects.filter(Ostatus=2)
+    # S = Store.objects.get(Sid = orders.S_id)
+    # Sname = S.Sname
+    # Saddress = S.Saddress
+    # Stransit_price = S.Stransit_price
+    # C = Consumer.objects.get(Cid = orders.C_id)
+    # Cphone = C.Cphone
+    # Caddress = C.Caddress
+    # context = {'Oid': orders.Oid,'Ocreated': orders.Ocreated,'Sname': Sname,'Saddress': Saddress,'Stransit_price': Stransit_price, 'Cphone': Cphone,'Caddress': Caddress}
+    
+    # for order in orders:
+    #     S = Store.objects.get(Sid = order.S_id)
+    #     Sname = S.Sname
+    #     Saddress = S.Saddress
+    #     Stransit_price = S.Stransit_price
+    #     C = Consumer.objects.get(Cid = order.C_id)
+    #     Cphone = C.Cphone
+    #     Caddress = C.Caddress
+    #     context = {'Oid': order.Oid,'Ocreated': order.Ocreated,'Sname': Sname,'Saddress': Saddress,'Stransit_price': Stransit_price, 'Cphone': Cphone,'Caddress': Caddress}
+    # return orders
+    return render(request, 'deliver_show_order.html', {'data': orders})
