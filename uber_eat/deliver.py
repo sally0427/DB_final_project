@@ -14,10 +14,16 @@ def add_deliver_post(request):
     addDeliver = Deliver(Did = random_num, Dname = request.POST['Dname'], Dphone = request.POST['Dphone']).save()
     return HttpResponse('<p>Add deliver</p>')
 
-
 def del_deliver(request):
     return render(request, "del_deliver.html")
 
 def del_deliver_post(request):
     delDeliver = Deliver.objects.filter(Dname = request.POST['Dname']).delete()
     return HttpResponse('<p>Del deliver</p>')
+
+def deliver_show_order(request):
+    Orders = Order.objects.filter().get(Ostatus=2)
+    Sname = Store.objects.get(Sid = Orders.S_id).Sname
+    Cname = Consumer.objects.get(Cid = Orders.C_id).Cname
+    # context = {'Oid': Oid,'Ocount': Ocount,'Oprice': Oprice,'Ocreated': Ocreated,'Sname': Sname, 'Cname': Cname}
+    return render(request, 'deliver_show_order.html', {'data': Orders})
