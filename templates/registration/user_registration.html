@@ -1,0 +1,52 @@
+{% extends 'registration/registration_base.html' %}
+{% block title %}<h4 class="mb-3">Sign_up</h4>{% endblock %}
+
+{% block Sign_form %}
+<form class="needs-validation" novalidate method="POST">
+    {% csrf_token %}
+  <div class="row g-3">
+    <div class="col-12">
+      <label for="username" class="form-label col-1">Username</label>
+        {{ form.username }}
+        <div class="invalid-feedback">
+          Your username is required.
+        </div>
+    </div>
+
+    <div class="col-12">
+      <label for="email" class="form-label col-1">email</label>
+        {{ form.email }}
+      <div class="invalid-feedback">
+        Please enter a valid email address for shipping updates.
+      </div>
+    </div>
+
+    <div class="col-12">
+      <label for="password" class="form-label col-1.5">Password 1</label>
+      {{ form.password1 }}
+      <div class="invalid-feedback">
+        Please enter your shipping address.
+      </div>
+    </div>
+
+    <div class="col-12">
+      <label for="password" class="form-label col-1.5">Password 2</label>
+      {{ form.password2 }}
+    </div>
+    <div class="col-12">
+      <label for="phone" class="form-label col-1">phone</label>
+      {{ form.phone }}
+    </div>
+    <div class="col-12">
+      <label for="phone" class="form-label col-1">address</label>
+      {{ form.address }}
+    </div>
+{#            <div class="col-12">#}
+{#              <label for="phone" class="form-label col-2">Select your user type </label>#}
+{#              {{ form.type }}#}
+{#            </div>#}
+  </div>
+  <button class="w-100 btn btn-primary btn-lg" type="submit">Continue to checkout</button>
+</form>
+
+{% endblock %}

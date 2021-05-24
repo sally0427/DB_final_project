@@ -1,0 +1,18 @@
+<!-- header.html (Session_cookies) -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form action='.' method='POST'>
+        {% csrf_token %}
+        <table>
+            {{ login_form.as_table }}
+        </table>
+        <input type='submit' value='登入'><a href="../logout">Log out</a>
+        <br/>
+    </form>
+</body>
+</html>
