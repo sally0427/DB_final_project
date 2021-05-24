@@ -18,6 +18,10 @@ from uber_eat.views import SingUpView
 from uber_eat import views
 
 urlpatterns = [
-    path('', SingUpView.as_view(), name='signup'),
-    path('backCheck', views.SignupBack, name='backCheck'),
+    path('signup/', SingUpView.as_view(), name='signup'),
+    path('', views.home, name='home'),
+    path('login/', views.login, name='login'),
+    path('logout/', views.logout, name='logout')
+    # path('login/', views.login, name='login')
+    # path('backCheck', views.SignupBack, name='backCheck'),
 ]
