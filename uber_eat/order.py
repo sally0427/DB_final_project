@@ -10,16 +10,21 @@ def add_order_post(request):
     oid = random.randint(0,10000000)
     addOrder = Order(Oid = oid, C_id = request.POST['C'], S_id = request.POST['S']).save()
     Plist = request.POST.getlist('P')
+    price = 0
+    num = 0
     for item in Plist:
         random_num = random.randint(0,10000000)
         Pid = item.split(',')[0]
         count = item.split(',')[1]
+        price = price + Product.objects.get(Pid = Pid).Pprice
+        num = num + int(count)
         addOrdergoods = OrderGoods(OGid = random_num, O_id = oid, P_id = Pid, OGcount = count).save()
+    addOrder = Order.objects.filter(Oid = oid).update(Oprice = price, Ocount = num)
     return HttpResponse('<p>Add Order</p>')
 
 def show_order(request):
     try:
-        order = Order.objects.get(Oid = 2181925)
+        order = Order.objects.get(Oid = request.POST['Oid'])
     except:
         errormessage = " (讀取錯誤!)"
     Oid = order.Oid

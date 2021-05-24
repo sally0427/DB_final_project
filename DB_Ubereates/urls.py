@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from uber_eat import views, store, consumer, product, order
+from uber_eat import views, store, consumer, product, order, deliver
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -46,15 +46,17 @@ urlpatterns = [
                   path('del_consumer/', consumer.del_consumer, name='del_consumer'),
                   path('del_consumer_post/', consumer.del_consumer_post, name='del_consumer_post'),
 
-                  path('add_deliver/', views.add_deliver, name='add_deliver'),
-                  path('add_deliver_post/', views.add_deliver_post, name='add_deliver_post'),
-
+                  path('add_deliver/', deliver.add_deliver, name='add_deliver'),
+                  path('add_deliver_post/', deliver.add_deliver_post, name='add_deliver_post'),
+                  path('del_deliver/', deliver.del_deliver, name='del_deliver'),
+                  path('del_deliver_post/', deliver.del_deliver_post, name='del_deliver_post'),
+                  path('deliver_show_order/', deliver.deliver_show_order, name='deliver_show_order'),
+                  
                   path('add_order/', order.add_order, name='add_order'),
                   path('add_order_post/', order.add_order_post, name='add_order_post'),
                   path('show_order/', order.show_order, name='show_order'),
                   path('mod_Ostatus_post/', order.mod_Ostatus_post, name='mod_Ostatus_post'),
                   path('mod_Odeliver_post/', order.mod_Odeliver_post, name='mod_Odeliver_post'),
 
-                  path('del_deliver/', views.del_deliver, name='del_deliver'),
-                  path('del_deliver_post/', views.del_deliver_post, name='del_deliver_post'),
+
               ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
