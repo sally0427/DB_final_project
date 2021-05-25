@@ -4,11 +4,7 @@ from django.http import HttpResponse
 import random
 
 def add_consumer(request):
-<<<<<<< HEAD
-    return render(request, "add_consumer.html")
-=======
     return render(request, "sally_api/add_consumer.html")
->>>>>>> origin
 
 def add_consumer_post(request):
     random_num = random.randint(0,10000000)
@@ -16,11 +12,7 @@ def add_consumer_post(request):
     return HttpResponse('<p>Add consumer</p>')
 
 def del_consumer(request):
-<<<<<<< HEAD
-    return render(request, "del_consumer.html")
-=======
     return render(request, "sally_api/del_consumer.html")
->>>>>>> origin
 
 def del_consumer_post(request):
     delConsumer = Consumer.objects.filter(Cname = request.POST['Cname']).delete()

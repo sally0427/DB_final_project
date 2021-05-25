@@ -1,12 +1,7 @@
-<<<<<<< HEAD
-from django.db import models
-
-=======
 # Create your models here.
 from django.db import models
 
 
->>>>>>> origin
 # Create your models here.
 class Store(models.Model):
     Sid = models.IntegerField(primary_key=True)
@@ -14,40 +9,16 @@ class Store(models.Model):
     Saddress = models.CharField(max_length=20, null=True)
     Sphone = models.CharField(max_length=20, null=True)
     Stransit_price = models.DecimalField(max_digits=10, decimal_places=2, default='30')
-<<<<<<< HEAD
-    def __str__(self):
-        return self.name #表示顯示cName欄位
-=======
 
     def __str__(self):
         return self.name  # 表示顯示cName欄位
 
->>>>>>> origin
 
 class Product(models.Model):
     Pid = models.IntegerField(primary_key=True)
     S = models.ForeignKey(Store, on_delete=models.CASCADE, primary_key=False)
     Pname = models.CharField(max_length=20, null=True)
     Ptime = models.DateField(null=True)
-<<<<<<< HEAD
-    Pprice =  models.IntegerField(null=True)
-
-class Deliver(models.Model):
-    Did = models.IntegerField( primary_key=True)
-    Dname = models.CharField(max_length=20, null=True)
-    Dphone = models.CharField(max_length=20, null=True)
-
-class Consumer(models.Model):
-    Cid = models.IntegerField(primary_key=True)
-    Cname = models.CharField(max_length=20, null=True)
-    Cphone = models.CharField(max_length=20, null=True)
-    Caddress = models.CharField(max_length=20, null=True)
-    Cpassword = models.CharField(max_length=20, null=True)
-    Cemail = models.CharField(max_length=20, null=True)
-
-class Order(models.Model):
-
-=======
     Pprice = models.IntegerField(null=True)
 
 
@@ -70,7 +41,6 @@ class Consumer(models.Model):
 
 
 class Order(models.Model):
->>>>>>> origin
     ORDER_STATUS_CHOICES = (
         (1, '正在建立訂單'),
         (2, '店家出貨'),
@@ -89,16 +59,9 @@ class Order(models.Model):
     Ostatus = models.SmallIntegerField(choices=ORDER_STATUS_CHOICES, default=1, verbose_name='訂單狀態')
     Ocreated = models.DateTimeField(auto_now_add=True)
 
-<<<<<<< HEAD
-=======
 
->>>>>>> origin
 class OrderGoods(models.Model):
     OGid = models.IntegerField(primary_key=True)
     O = models.ForeignKey(Order, on_delete=models.CASCADE, null=False)
     P = models.ForeignKey(Product, on_delete=models.CASCADE, primary_key=False)
-<<<<<<< HEAD
     OGcount = models.IntegerField(default=1, verbose_name='商品數量')
-=======
-    OGcount = models.IntegerField(default=1, verbose_name='商品數量')
->>>>>>> origin
