@@ -11,7 +11,7 @@ class Store(models.Model):
     Stransit_price = models.DecimalField(max_digits=10, decimal_places=2, default='30')
 
     def __str__(self):
-        return self.name  # 表示顯示cName欄位
+        return self.Sname  # 表示顯示cName欄位
 
 
 class Product(models.Model):
