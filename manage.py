@@ -6,6 +6,10 @@ import sys
 
 def main():
     """Run administrative tasks."""
+<<<<<<< HEAD
+=======
+
+>>>>>>> 4ccc507b504e52aab9ccb06380ffc6b701c4aa10
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'DB_Ubereats.settings')
     try:
         from django.core.management import execute_from_command_line

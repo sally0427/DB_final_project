@@ -103,6 +103,7 @@ def userinfo(request):
 # ----------------------------------------------------------------
 # def test(request):
 #     return render(request, "index.html")
+<<<<<<< HEAD
 
 
 def add_deliver(request):
@@ -122,3 +123,5 @@ def del_deliver(request):
 def del_deliver_post(request):
     delDeliver = Deliver.objects.filter(Dname=request.POST['Dname']).delete()
     return HttpResponse('<p>Del deliver</p>')
+=======
+>>>>>>> 4ccc507b504e52aab9ccb06380ffc6b701c4aa10
