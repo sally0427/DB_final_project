@@ -32,8 +32,6 @@ urlpatterns = [
 
                   # ------------------------------------------------------
 
-                  path('add_store/', store.add_store, name='add_store'),
-                  path('add_store_post/', store.add_store_post, name='add_store_post'),
                   path('del_store/', store.del_store, name='del_store'),
                   path('del_store_post/', store.del_store_post, name='del_store_post'),
                   path('show_store/', store.show_store, name='show_store'),

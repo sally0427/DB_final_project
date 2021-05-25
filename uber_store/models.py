@@ -14,3 +14,11 @@ class Store(models.Model):
 
     def __str__(self):
         return self.Saddress
+
+
+class Product(models.Model):
+    Pid = models.AutoField(primary_key=True, auto_created=True)
+    S = models.ForeignKey(Store, on_delete=models.CASCADE)
+    Pname = models.CharField(max_length=20, null=True)
+    Ptime = models.DateField(null=True)
+    Pprice = models.IntegerField(null=True)

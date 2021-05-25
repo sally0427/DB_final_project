@@ -21,8 +21,7 @@ from django.http import HttpResponse
 
 
 def test(request):
-    login_form = forms.LoginForm()
-    return render(request, 'sign-in/signin.html', locals())
+    return render(request, 'store/Show_product.html', locals())
 
 
 def login(request):

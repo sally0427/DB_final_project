@@ -1,5 +1,8 @@
 from django.shortcuts import render
-from uber_eat.models import OrderGoods, Store, Product, Order, Consumer, Deliver
+from uber_eat.models import OrderGoods, Order, Consumer
+from uber_store.models import Store, Product
+from uber_deliver.models import Deliver
+from django.contrib.auth.models import User
 from django.http import HttpResponse
 import random
 

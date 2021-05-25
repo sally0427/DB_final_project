@@ -1,12 +1,25 @@
 from django.contrib import messages
 from django.shortcuts import render, redirect
-from uber_store import forms
+from uber_store import forms, models
 from django.contrib.auth.models import User
-from uber_store import models
+from uber_eat.product import show_product
 from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
+@login_required(login_url='/uber_eat/login/')
+def store_page(request):
+    if request.user.is_authenticated:
+        username = request.user.username
+        user = User.objects.get(username=username)
+        try:
+            Storeinfo = models.Store.objects.get(user=user)
+            if Storeinfo is not None:
+                Sname = Storeinfo.Sname
+                ProductList = show_product(Storeinfo.Sid)
+        except:
+            messages.add_message(request, messages.INFO, '請先創立商店')
+    return render(request, 'store/Show_product.html', locals())
 
 def home(request):
     form = forms.SignUpForm

@@ -1,31 +1,33 @@
 # Create your models here.
 from django.db import models
-
+from uber_store.models import Store, Product
+from uber_deliver.models import Deliver
 
 # Create your models here.
-class Store(models.Model):
-    Sid = models.IntegerField(primary_key=True)
-    Sname = models.CharField(max_length=20, null=True)
-    Saddress = models.CharField(max_length=20, null=True)
-    Sphone = models.CharField(max_length=20, null=True)
-    Stransit_price = models.DecimalField(max_digits=10, decimal_places=2, default='30')
-
-    def __str__(self):
-        return self.Sname  # 表示顯示cName欄位
-
-
-class Product(models.Model):
-    Pid = models.IntegerField(primary_key=True)
-    S = models.ForeignKey(Store, on_delete=models.CASCADE, primary_key=False)
-    Pname = models.CharField(max_length=20, null=True)
-    Ptime = models.DateField(null=True)
-    Pprice = models.IntegerField(null=True)
+# class Store(models.Model):
+#     # --> 以移至Ｓtore
+#     Sid = models.IntegerField(primary_key=True)
+#     Sname = models.CharField(max_length=20, null=True)
+#     Saddress = models.CharField(max_length=20, null=True)
+#     Sphone = models.CharField(max_length=20, null=True)
+#     Stransit_price = models.DecimalField(max_digits=10, decimal_places=2, default='30')
+#
+#     def __str__(self):
+#         return self.Sname  # 表示顯示cName欄位
 
 
-class Deliver(models.Model):
-    Did = models.IntegerField(primary_key=True)
-    Dname = models.CharField(max_length=20, null=True)
-    Dphone = models.CharField(max_length=20, null=True)
+# class Product(models.Model): --> 以移至Ｓtore
+#     Pid = models.IntegerField(primary_key=True)
+#     S = models.ForeignKey(Store, on_delete=models.CASCADE, primary_key=False)
+#     Pname = models.CharField(max_length=20, null=True)
+#     Ptime = models.DateField(null=True)
+#     Pprice = models.IntegerField(null=True)
+
+
+# class Deliver(models.Model):
+#     Did = models.IntegerField(primary_key=True)
+#     Dname = models.CharField(max_length=20, null=True)
+#     Dphone = models.CharField(max_length=20, null=True)
 
 
 class Consumer(models.Model):
