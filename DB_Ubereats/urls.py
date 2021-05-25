@@ -51,13 +51,15 @@ urlpatterns = [
                   path('add_deliver_post/', deliver.add_deliver_post, name='add_deliver_post'),
                   path('del_deliver/', deliver.del_deliver, name='del_deliver'),
                   path('del_deliver_post/', deliver.del_deliver_post, name='del_deliver_post'),
-                  path('deliver_show_order/', deliver.deliver_show_order, name='deliver_show_order'),
+                  
                   
                   path('add_order/', order.add_order, name='add_order'),
                   path('add_order_post/', order.add_order_post, name='add_order_post'),
-                  path('show_order/', order.show_order, name='show_order'),
                   path('mod_Ostatus_post/', order.mod_Ostatus_post, name='mod_Ostatus_post'),
                   path('mod_Odeliver_post/', order.mod_Odeliver_post, name='mod_Odeliver_post'),
+                  path('consumer_show_order/', order.consumer_show_order, name='consumer_show_order'),
+                  path('store_show_order/', order.store_show_order, name='store_show_order'),
+                  path('deliver_show_order/', order.deliver_show_order, name='deliver_show_order'),
 
 
               ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
