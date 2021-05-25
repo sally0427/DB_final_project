@@ -13,7 +13,7 @@ def home(request):
     return render(request, 'registration/store_registration.html', locals())
 
 
-@login_required(login_url='/login/')
+@login_required(login_url='/uber_eat/login/')
 def add_store_post(request):
     if request.user.is_authenticated:
         username = request.user.username
@@ -31,6 +31,7 @@ def add_store_post(request):
                     Sadderss = request.POST['Saddress']
                     Sphone = request.POST['Sphone']
                     models.Store.objects.create(user=user, Sname=Sname, Saddress=Sadderss, Sphone=Sphone)
+                    return redirect('/')
                 else:
                     messages.add_message(request, messages.INFO, '請檢查輸入的欄位內容')
             else:

@@ -7,7 +7,7 @@ from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 
-@login_required(login_url='/login/')
+@login_required(login_url='/uber_eat/login/')
 def add_deliver_post(request):
     if request.user.is_authenticated:
         username = request.user.username
@@ -24,6 +24,7 @@ def add_deliver_post(request):
                     Dname = request.POST['Dname'].strip()
                     Dphone = request.POST['Dphone']
                     models.Deliver.objects.create(user=user, Dname=Dname, Dphone=Dphone)
+                    return redirect('/')
                 else:
                     messages.add_message(request, messages.INFO, '請檢查輸入的欄位內容')
             else:
