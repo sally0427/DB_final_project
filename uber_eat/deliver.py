@@ -21,19 +21,3 @@ def del_deliver_post(request):
     delDeliver = Deliver.objects.filter(Dname=request.POST['Dname']).delete()
     return HttpResponse('<p>Del deliver</p>')
 
-def deliver_show_order(request):
-    orders = Order.objects.filter(Ostatus=2).order_by('Oid')
-    orderlist=list(orders)
-    context = []
-    for order in orderlist:
-        S = Store.objects.get(Sid = order.S_id)
-        Sname = S.Sname
-        Saddress = S.Saddress
-        Stransit_price = S.Stransit_price
-        
-        C = Consumer.objects.get(Cid = order.C_id)
-        Cphone = C.Cphone
-        Caddress = C.Caddress
-        dict = {'Oid': order.Oid,'Ocreated': order.Ocreated,'Sname': Sname,'Saddress': Saddress,'Stransit_price': Stransit_price, 'Cphone': Cphone,'Caddress': Caddress}
-        context.append(dict)
-    return render(request, 'sally_api/deliver_show_order.html', {'data': context})
