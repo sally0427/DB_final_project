@@ -1,5 +1,5 @@
 """
-WSGI config for DB_Ubereates project.
+WSGI config for DB_Ubereats project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
@@ -11,6 +11,6 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'DB_Ubereates.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'DB_Ubereats.settings')
 
 application = get_wsgi_application()

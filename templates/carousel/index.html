@@ -52,10 +52,23 @@
             <a class="nav-link active" aria-current="page" href="#">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="uber_eat/login">sing-in</a>
+              {% if userinfo %}
+                  <a class="nav-link" href="uber_eat/logout">logout</a>
+              {% else %}
+                  <a class="nav-link" href="uber_eat/login">
+                    sing-in
+                    </a>
+              {% endif %}
           </li>
           <li class="nav-item">
-            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">
+                {% if userinfo %}
+                    歡迎:{{userinfo.username}}
+                    {% for message in messages %}
+                        {{ message }}
+                    {% endfor %}
+                {% endif %}
+            </a>
           </li>
         </ul>
         <form class="d-flex">
@@ -105,7 +118,7 @@
           <div class="carousel-caption text-end">
             <h1>One more for good measure.</h1>
             <p>Some representative placeholder content for the third slide of this carousel.</p>
-            <p><a class="btn btn-lg btn-primary" href="uber_deliver/joinDeliver">Browse gallery</a></p>
+            <p><a class="btn btn-lg btn-primary" href="uber_deliver/joinDeliver">joinDeliver</a></p>
           </div>
         </div>
       </div>

@@ -34,10 +34,10 @@ class Consumer(models.Model):
     Cpassword = models.CharField(max_length=20, null=False, default=None)
     Cemail = models.EmailField(null=False, default=None)
     Cphone = models.CharField(max_length=20, null=True)
-    Cphone = models.CharField(max_length=20, null=True)
+    Caddress = models.CharField(max_length=20, null=True)
 
     def __str__(self):
-        return self.name
+        return self.Cname
 
 
 class Order(models.Model):
