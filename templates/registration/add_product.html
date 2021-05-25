@@ -1,0 +1,27 @@
+{% extends 'registration/registration_base.html' %}
+{% block title %}<h4 class="mb-3">Add your product</h4>{% endblock %}
+
+{% block Sign_form %}
+<form class="needs-validation" novalidate method="POST">
+    {% csrf_token %}
+  <div class="row g-3">
+    <div class="col-12">
+      <label for="username" class="form-label col-1">{{ form.Pname.label }}</label>
+        {{ form.Pname }}
+        <div class="invalid-feedback">
+          Your username is required.
+        </div>
+    </div>
+
+    <div class="col-12">
+      <label for="email" class="form-label col-1">{{ form.Pprice.label }}</label>
+        {{ form.Pprice }}
+      <div class="invalid-feedback">
+        Please enter a valid email address for shipping updates.
+      </div>
+    </div>
+  </div>
+  <button class="w-100 btn btn-primary btn-lg" type="submit">Continue to checkout</button>
+</form>
+
+{% endblock %}

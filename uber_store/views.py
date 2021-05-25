@@ -6,6 +6,30 @@ from uber_eat.product import show_product
 from django.contrib.auth.decorators import login_required
 
 
+@login_required(login_url='/uber_eat/login/')
+def add_product(request):
+    if request.user.is_authenticated:
+        username = request.user.username
+        user = User.objects.get(username=username)
+        try:
+            Storeinfo = models.Store.objects.get(user=user)
+            if request.method == 'POST':
+                form = forms.addProductForm(request.POST)
+                if form.is_valid():
+                    Pname = request.POST['Pname'].strip()
+                    Pprice = request.POST['Pprice']
+                    models.Product.objects.create(S=Storeinfo, Pname=Pname, Pprice=Pprice)
+                    return redirect('/uber_store')
+                else:
+                    messages.add_message(request, messages.INFO, '請檢查輸入的欄位內容')
+            else:
+                form = forms.addProductForm()
+        except:
+            messages.add_message(request, messages.INFO, '頁面錯誤')
+            return redirect('/')
+    return render(request, 'registration/add_product.html', locals())
+
+
 # Create your views here.
 @login_required(login_url='/uber_eat/login/')
 def store_page(request):
@@ -17,9 +41,12 @@ def store_page(request):
             if Storeinfo is not None:
                 Sname = Storeinfo.Sname
                 ProductList = show_product(Storeinfo.Sid)
+            if request.method == 'GET':
+                models.Product.objects.filter(Pid=request.GET['Pid']).delete()
         except:
-            messages.add_message(request, messages.INFO, '請先創立商店')
-    return render(request, 'store/Show_product.html', locals())
+            pass
+    return render(request, 'store/Edit_product.html', locals())
+
 
 def home(request):
     form = forms.SignUpForm

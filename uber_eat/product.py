@@ -21,9 +21,5 @@ def del_product_post(request):
     return HttpResponse('<p>Del product</p>')
 
 def show_product(Sid):
-    # ProductList = Product.objects.filter(S_id=request.POST['S']).order_by('Pid')
-    # Sname = Store.objects.get(Sid = request.POST['S']).Sname
     ProductList = Product.objects.filter(S_id=Sid).order_by('Pid')
-    Sname = Store.objects.get(Sid=Sid).Sname
     return ProductList
-    # return render('sally_api/show_product.html', {'data': ProductList, 'Sname': Sname})

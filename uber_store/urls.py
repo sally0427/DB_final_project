@@ -17,7 +17,8 @@ from django.urls import path
 from uber_store import views
 
 urlpatterns = [
-    path('',views.store_page, name='store_page'),
+    path('', views.store_page, name='store_page'),
+    path('add_product', views.add_product, name='add_product'),
     path('joinStore/', views.add_store_post, name='home'),
     # path('backCheck', views.SignupBack, name='backCheck'),
 ]

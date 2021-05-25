@@ -16,3 +16,8 @@ class SignUpForm(forms.Form):
             'Saddress',
             'Sphone'
         ]
+
+
+class addProductForm(forms.Form):
+    Pname = forms.CharField(label='商品名稱', max_length=10)
+    Pprice = forms.CharField(label='商品價錢', max_length=10)

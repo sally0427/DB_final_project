@@ -1,4 +1,10 @@
-{% extends 'store/Edit_product.html' %}
+{% extends 'store/index.html' %}
+{% block store_title %}
+    {% if Sname %}
+        歡迎：{{ Sname }}
+    {% endif %}
+{% endblock %}
+
 {% block show_product %}
     {% for product in ProductList %}
         <div class="col">

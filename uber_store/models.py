@@ -13,7 +13,7 @@ class Store(models.Model):
     Stransit_price = models.DecimalField(max_digits=10, decimal_places=2, default='30')
 
     def __str__(self):
-        return self.Saddress
+        return self.Sname
 
 
 class Product(models.Model):
