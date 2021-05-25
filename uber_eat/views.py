@@ -34,17 +34,16 @@ def login(request):
                 if user.is_active:
                     auth.login(request, user)
                     print('success')
-                    messages.add_message(request, messages.SUCCESS, 'success')
                     return redirect('/')
                 else:
-                    messages.add_message(request, messages.WARNING, 'warning')
+                    messages.add_message(request, messages.WARNING, '使用者未啟用')
             else:
-                messages.add_message(request, messages.WARNING, 'fail')
+                messages.add_message(request, messages.WARNING, '使用者帳號或密碼錯誤')
         else:
             messages.add_message(request, messages.INFO, '請檢查輸入的欄位內容')
     else:
         login_form = forms.LoginForm()
-    return render(request, 'testLogin.html', locals())
+    return render(request, 'sign-in/signin.html', locals())
 
 
 def index(request, pid=None, del_pass=None):
@@ -56,16 +55,21 @@ def index(request, pid=None, del_pass=None):
 
 
 def logout(request):
-    if 'username' in request.session:
+    if request.user.is_authenticated:
         auth.logout(request)
         Session.objects.all().delete()
-        messages.add_message(request, messages.INFO, "成功登出了")
-        return redirect('/login/')
+        return redirect('/uber_eat/login/')
     return redirect('/')
 
 
 def home(request):
-    return render(request, 'carousel/index.html')
+    if request.user.is_authenticated:
+        username = request.user.username
+        try:
+            userinfo = User.objects.get(username=username)
+        except:
+            pass
+    return render(request, 'carousel/index.html', locals())
 
 
 def insert(request):
@@ -94,8 +98,3 @@ def userinfo(request):
         except:
             pass
     return render(request, 'userinfo.html', locals())
-
-
-# ----------------------------------------------------------------
-# def test(request):
-#     return render(request, "index.html")

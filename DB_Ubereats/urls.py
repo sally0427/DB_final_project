@@ -25,9 +25,11 @@ urlpatterns = [
                   path('accounts/', include('django.contrib.auth.urls')),
                   path('uber_eat/', include('uber_eat.urls')),
                   path('uber_store/', include('uber_store.urls')),
+                  path('uber_deliver/', include('uber_deliver.urls')),
                   path('', views.home, name='home'),
                   path('userinfo/', views.userinfo),
                   path('test/', views.test),
+
                   # ------------------------------------------------------
 
                   path('add_store/', store.add_store, name='add_store'),

@@ -4,8 +4,10 @@ from django.http import HttpResponse
 import random
 import os
 
+
 def add_store(request):
     return render(request, "sally_api/add_store.html")
+
 
 def add_store_post(request):
     random_num = random.randint(0,10000000)
@@ -15,12 +17,15 @@ def add_store_post(request):
         os.makedirs(path)
     return HttpResponse('<p>Add store</p>')
 
+
 def del_store(request):
     return render(request, "sally_api/del_store.html")
 
+
 def del_store_post(request):
-    delProduct = Store.objects.filter(Sname = request.POST['Sname']).delete()
+    delProduct = Store.objects.filter(Sname=request.POST['Sname']).delete()
     return HttpResponse('<p>Del store</p>')
+
 
 def show_store(request):
     StoreList = Store.objects.filter().all().order_by('Sid')
