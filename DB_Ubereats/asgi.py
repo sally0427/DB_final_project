@@ -11,6 +11,6 @@ import os
 
 from django.core.asgi import get_asgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'DB_Ubereats.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'DB_Ubereats.settings.py')
 
 application = get_asgi_application()
