@@ -12,12 +12,20 @@ from uber_eat import forms
 from uber_eat.forms import SignUpForm
 # Create your views here.
 from uber_eat.models import *
+from uber_eat.product import show_product
 from uber_store import models
 from django.contrib import auth
 from django.shortcuts import redirect
 from uber_eat.store import show_store
 import random
 from django.http import HttpResponse
+
+
+def show_store_page(request):
+    if request.method == 'GET':
+        Storeinfo = Store.objects.get(Sid=request.GET['Sid'])
+        ProductList = show_product(Storeinfo.Sid)
+    return render(request, 'store/Show_product.html', locals())
 
 
 def test(request):
