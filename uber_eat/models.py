@@ -1,5 +1,6 @@
 # Create your models here.
 from django.db import models
+from django.utils import timezone
 
 
 # Create your models here.
@@ -65,3 +66,10 @@ class OrderGoods(models.Model):
     O = models.ForeignKey(Order, on_delete=models.CASCADE, null=False)
     P = models.ForeignKey(Product, on_delete=models.CASCADE, primary_key=False)
     OGcount = models.IntegerField(default=1, verbose_name='商品數量')
+
+class Photo(models.Model):
+    def user_directory_path(instance, filename):
+        # file will be uploaded to MEDIA_ROOT/<Sid>/<Pid>
+        return '{0}/{1}'.format(instance, filename)
+    image = models.ImageField(upload_to=user_directory_path, blank=False, null=False)
+    upload_date = models.DateField(default=timezone.now)

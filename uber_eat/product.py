@@ -1,7 +1,9 @@
-from django.shortcuts import render
-from uber_eat.models import OrderGoods, Store, Product, Order, Consumer, Deliver
+from django.shortcuts import render, redirect
+from uber_eat.models import OrderGoods, Store, Product, Order, Consumer, Deliver, Photo
 from django.http import HttpResponse
 import random
+import os
+from .forms import UploadModelForm
 
 def add_product(request):
     return render(request, "sally_api/add_product.html")
@@ -22,3 +24,19 @@ def show_product(request):
     ProductList = Product.objects.filter(S_id = request.POST['S']).order_by('Pid')
     Sname = Store.objects.get(Sid = request.POST['S']).Sname
     return render(request, 'sally_api/show_product.html', {'data': ProductList, 'Sname': Sname})
+
+def upload_product_img(request):
+    photos = Photo.objects.all()
+    form = UploadModelForm()
+    if request.method == "POST":
+        Sid = Store.objects.get(Sid = request.POST['Sid']).Sid
+        Pid = Product.objects.get(Pid = request.POST['Pid']).Pid
+        form = UploadModelForm(request.POST, request.FILES, Sid, Pid)
+        if form.is_valid():
+            form.save()
+            return redirect('/uber_eat')
+    context = {
+        'uber_eat': photos,
+        'form': form
+    }
+    return render(request, 'sally_api/image.html', context)
