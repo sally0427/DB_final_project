@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from uber_eat.models import OrderGoods, Store, Product, Order, Consumer, Deliver
+from uber_eat.models import OrderGoods, Store, Product, Order, Deliver
 from django.http import HttpResponse
 import random
 

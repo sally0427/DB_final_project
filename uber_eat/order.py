@@ -1,5 +1,9 @@
 from django.shortcuts import render
-from uber_eat.models import OrderGoods, Store, Product, Order, Consumer, Deliver
+from uber_eat.models import OrderGoods, Order
+from django.contrib.auth.models import User
+from uber_store.models import Store, Product
+from uber_deliver.models import Deliver
+from django.contrib.auth.models import User
 from django.http import HttpResponse
 import random
 
@@ -22,7 +26,7 @@ def add_order_post(request):
     addOrder = Order.objects.filter(Oid = oid).update(Oprice = price, Ocount = num)
     return HttpResponse('<p>Add Order</p>')
 
-def consumer_show_order(request):
+def user_show_order(request):
     try:
         order = Order.objects.get(Oid = request.POST['Oid'])
     except:
@@ -32,7 +36,7 @@ def consumer_show_order(request):
     Oprice = order.Oprice
     Ocreated = order.Ocreated
     Sname = Store.objects.get(Sid = order.S_id).Sname
-    Cname = Consumer.objects.get(Cid = order.C_id).Cname
+    Cname = User.objects.get(id = order.C_id).username
     context = {'Oid': Oid,'Ocount': Ocount,'Oprice': Oprice,'Ocreated': Ocreated,'Sname': Sname, 'Cname': Cname}
     return render(request, 'sally_api/consumer_show_order.html', {'data': context})
 
@@ -46,7 +50,7 @@ def store_show_order(request):
     Oprice = order.Oprice
     Ocreated = order.Ocreated
     Sname = Store.objects.get(Sid = order.S_id).Sname
-    Cname = Consumer.objects.get(Cid = order.C_id).Cname
+    Cname = User.objects.get(Cid = order.C_id).Cname
     context = {'Oid': Oid,'Ocount': Ocount,'Oprice': Oprice,'Ocreated': Ocreated,'Sname': Sname, 'Cname': Cname}
     return render(request, 'sally_api/store_show_order.html', {'data': context})
 
@@ -60,7 +64,7 @@ def deliver_show_order(request):
         Saddress = S.Saddress
         Stransit_price = S.Stransit_price
         
-        C = Consumer.objects.get(Cid = order.C_id)
+        C = User.objects.get(Cid = order.C_id)
         Cphone = C.Cphone
         Caddress = C.Caddress
         dict = {'Oid': order.Oid,'Ocreated': order.Ocreated,'Sname': Sname,'Saddress': Saddress,'Stransit_price': Stransit_price, 'Cphone': Cphone,'Caddress': Caddress}

@@ -12,15 +12,24 @@ from uber_eat import forms
 from uber_eat.forms import SignUpForm
 # Create your views here.
 from uber_eat.models import *
+from uber_eat.product import show_product
+from uber_store import models
 from django.contrib import auth
 from django.shortcuts import redirect
+from uber_eat.store import show_store
 import random
 from django.http import HttpResponse
 
 
+def show_store_page(request):
+    if request.method == 'GET':
+        Storeinfo = Store.objects.get(Sid=request.GET['Sid'])
+        ProductList = show_product(Storeinfo.Sid)
+    return render(request, 'store/Show_product.html', locals())
+
+
 def test(request):
-    login_form = forms.LoginForm()
-    return render(request, 'sign-in/signin.html', locals())
+    return render(request, 'store/Show_product.html', locals())
 
 
 def login(request):
@@ -67,9 +76,16 @@ def home(request):
         username = request.user.username
         try:
             userinfo = User.objects.get(username=username)
+            try:
+                Storeinfo = models.Store.objects.get(user=userinfo)
+                if Storeinfo is not None:
+                    Sname = Storeinfo.Sname
+            except:
+                pass
         except:
             pass
-    return render(request, 'carousel/index.html', locals())
+    data = show_store(request)
+    return render(request, 'carousel/store_list.html', locals())
 
 
 def insert(request):
