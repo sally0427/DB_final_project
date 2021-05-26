@@ -11,14 +11,17 @@ from django.contrib import messages
 from uber_eat import forms
 from uber_eat.forms import SignUpForm
 # Create your views here.
+from uber_deliver.models import Deliver
 from uber_eat.models import *
 from uber_eat.product import show_product
-from uber_store import models
+from uber_store.models import Store, Product
 from django.contrib import auth
 from django.shortcuts import redirect
 from uber_eat.store import show_store
 import random
 from django.http import HttpResponse
+
+
 
 
 def show_store_page(request):
@@ -77,9 +80,15 @@ def home(request):
         try:
             userinfo = User.objects.get(username=username)
             try:
-                Storeinfo = models.Store.objects.get(user=userinfo)
+                Storeinfo = Store.objects.get(user=userinfo)
                 if Storeinfo is not None:
                     Sname = Storeinfo.Sname
+            except:
+                pass
+            try:
+                Deliverinfo = Deliver.objects.get(user=userinfo)
+                if Deliverinfo is not None:
+                    Dname = Deliverinfo.Dname
             except:
                 pass
         except:
