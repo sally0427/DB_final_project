@@ -1,10 +1,9 @@
 from django.shortcuts import render
-from uber_eat.models import OrderGoods, Product, Order, Consumer, Deliver
+from uber_eat.models import OrderGoods, Product, Order, Deliver
 from uber_store.models import Store
 from django.http import HttpResponse
 import random
 import os
-
 
 # def add_store(request):
 #     return render(request, "sally_api/add_store.html")
@@ -17,6 +16,7 @@ import os
 #     if not os.path.isdir(path):
 #         os.makedirs(path)
 #     return HttpResponse('<p>Add store</p>')
+
 
 
 def del_store(request):

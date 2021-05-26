@@ -4,7 +4,7 @@ from uber_store import forms, models
 from django.contrib.auth.models import User
 from uber_eat.product import show_product
 from django.contrib.auth.decorators import login_required
-
+import os
 
 @login_required(login_url='/uber_eat/login/')
 def add_product(request):
@@ -71,6 +71,9 @@ def add_store_post(request):
                     Sadderss = request.POST['Saddress']
                     Sphone = request.POST['Sphone']
                     models.Store.objects.create(user=user, Sname=Sname, Saddress=Sadderss, Sphone=Sphone)
+                    path = "static\\" + str(user.id) + "\\"
+                    if not os.path.isdir(path):
+                        os.makedirs(path)
                     return redirect('/')
                 else:
                     messages.add_message(request, messages.INFO, '請檢查輸入的欄位內容')

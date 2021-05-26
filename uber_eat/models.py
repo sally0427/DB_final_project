@@ -1,46 +1,9 @@
 # Create your models here.
 from django.db import models
+from django.utils import timezone
+from django.contrib.auth.models import User
 from uber_store.models import Store, Product
 from uber_deliver.models import Deliver
-
-# Create your models here.
-# class Store(models.Model):
-#     # --> 以移至Ｓtore
-#     Sid = models.IntegerField(primary_key=True)
-#     Sname = models.CharField(max_length=20, null=True)
-#     Saddress = models.CharField(max_length=20, null=True)
-#     Sphone = models.CharField(max_length=20, null=True)
-#     Stransit_price = models.DecimalField(max_digits=10, decimal_places=2, default='30')
-#
-#     def __str__(self):
-#         return self.Sname  # 表示顯示cName欄位
-
-
-# class Product(models.Model): --> 以移至Ｓtore
-#     Pid = models.IntegerField(primary_key=True)
-#     S = models.ForeignKey(Store, on_delete=models.CASCADE, primary_key=False)
-#     Pname = models.CharField(max_length=20, null=True)
-#     Ptime = models.DateField(null=True)
-#     Pprice = models.IntegerField(null=True)
-
-
-# class Deliver(models.Model):
-#     Did = models.IntegerField(primary_key=True)
-#     Dname = models.CharField(max_length=20, null=True)
-#     Dphone = models.CharField(max_length=20, null=True)
-
-
-class Consumer(models.Model):
-    Cid = models.AutoField(primary_key=True, auto_created=True)
-    Cname = models.CharField(max_length=20, null=True)
-    Cpassword = models.CharField(max_length=20, null=False, default=None)
-    Cemail = models.EmailField(null=False, default=None)
-    Cphone = models.CharField(max_length=20, null=True)
-    Caddress = models.CharField(max_length=20, null=True)
-
-    def __str__(self):
-        return self.Cname
-
 
 class Order(models.Model):
     ORDER_STATUS_CHOICES = (
@@ -51,9 +14,9 @@ class Order(models.Model):
         (5, '消費者領取貨(結束訂單)')
     )
 
-    Oid = models.IntegerField(primary_key=True)
+    Oid = models.AutoField(primary_key=True, auto_created=True)
     # store = models.ForeignKey(Store, on_delete=models.CASCADE, primary_key=False)
-    C = models.ForeignKey(Consumer, on_delete=models.CASCADE, primary_key=False, null=False)
+    C = models.ForeignKey(User, on_delete=models.CASCADE, primary_key=False, null=False)
     S = models.ForeignKey(Store, on_delete=models.CASCADE, null=False)
     D = models.ForeignKey(Deliver, on_delete=models.CASCADE, primary_key=False, null=True)
     Ocount = models.IntegerField(default=0, verbose_name='商品數量')
@@ -63,7 +26,14 @@ class Order(models.Model):
 
 
 class OrderGoods(models.Model):
-    OGid = models.IntegerField(primary_key=True)
+    OGid = models.AutoField(primary_key=True, auto_created=True)
     O = models.ForeignKey(Order, on_delete=models.CASCADE, null=False)
     P = models.ForeignKey(Product, on_delete=models.CASCADE, primary_key=False)
     OGcount = models.IntegerField(default=1, verbose_name='商品數量')
+
+class Photo(models.Model):
+    def user_directory_path(instance, filename):
+        # file will be uploaded to MEDIA_ROOT/<Sid>/<Pid>
+        return '{0}/{1}'.format(instance, filename)
+    image = models.ImageField(upload_to=user_directory_path, blank=False, null=False)
+    upload_date = models.DateField(default=timezone.now)
