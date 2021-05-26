@@ -1,6 +1,5 @@
-{% extends 'sally_api/base.html' %}
-
-{% block upload %}
+{% extends 'carousel/index.html' %}
+{% block store %}
 <form action="" enctype="multipart/form-data" method="POST">
     {% csrf_token %}
     <br />
@@ -8,9 +7,6 @@
         <div class="form-group col-md-4">
         </div>
         <div class="form-group col-md-4">
-            <th>Sid</th><th>Pid</th>
-            <input name="Sid">
-            <input name="Pid">
             <input class="btn btn-primary" type="submit" value="上傳" />
         </div>
         <div class="form-group col-md-4">
@@ -20,6 +16,7 @@
         <div class="form-group col-md-4">
         </div>
         <div class="form-group col-md-4">
+            {{ form.P }}
             {{ form.image }}
         </div>
         <div class="form-group col-md-4">

@@ -16,6 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from uber_eat import views, store, product, order, deliver
+from uber_store.models import Photo
 from django.contrib.auth.models import User
 from django.conf import settings
 from django.conf.urls.static import static
@@ -42,8 +43,7 @@ urlpatterns = [
                   # path('del_product/', product.del_product, name='del_product'),
                   # path('del_product_post/', product.del_product_post, name='del_product_post'),
                   # path('show_product/', product.show_product, name='show_product'),
-
-
+                #   path('uber_store/upload_product_img/', views.upload_product_img, name='upload_product_img'),
                 #   path('add_consumer/', consumer.add_consumer, name='add_consumer'),
                 #   path('add_consumer_post/', consumer.add_consumer_post, name='add_consumer_post'),
                 #   path('del_consumer/', consumer.del_consumer, name='del_consumer'),
