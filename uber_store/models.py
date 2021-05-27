@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
 
+
 # Create your models here.
 
 class Store(models.Model):
@@ -24,6 +25,7 @@ class Product(models.Model):
     Pprice = models.IntegerField(null=True)
     image = models.ImageField(upload_to='product_image/', blank=False, null=True, default=None)
     upload_date = models.DateField(default=timezone.now)
+
 
 class Photo(models.Model):
     # def user_directory_path(instance, filename):

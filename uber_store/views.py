@@ -1,5 +1,7 @@
 from django.contrib import messages
 from django.shortcuts import render, redirect
+import string
+
 from uber_store import forms, models
 from django.contrib.auth.models import User
 from uber_eat.product import show_product
@@ -30,6 +32,7 @@ def add_product(request):
             return redirect('/')
     return render(request, 'registration/add_product.html', locals())
 
+
 def show_product_img(ProductList):
     from django.db.models import Q
     q1 = Q()
@@ -38,6 +41,7 @@ def show_product_img(ProductList):
         q1.children.append(('P_id', product.Pid))
     PhotoList = models.Photo.objects.filter(q1).order_by('P_id')
     return PhotoList
+
 
 @login_required(login_url='/uber_eat/login/')
 def store_page(request):
@@ -94,17 +98,30 @@ def add_store_post(request):
 
 @login_required(login_url='/uber_eat/login/')
 def upload_product_img(request):
-    photos = models.Photo.objects.all()
     form = forms.UploadModelForm()
+    productinfo = models.Product.objects.get(Pid=request.GET['Pid'])
+
     if request.method == "POST":
         form = forms.UploadModelForm(request.POST, request.FILES)
-        # a = form.image
-        b = form.Meta
         if form.is_valid():
-            form.save()
-            return redirect('/')
+            productinfo.image = request.FILES['image']
+            productinfo.save()
+            imgPer(productinfo.image)
+            # form.save()
+            return redirect('/uber_store')
     context = {
-        'uber_eat': photos,
         'form': form
     }
     return render(request, 'sally_api/image.html', context)
+
+
+def imgPer(file):
+    from PIL import Image
+    strin = '/Users/guanlin/PycharmProjects/DB_Ubereats/media/'
+    strin += str(file)
+    print(strin)
+    img = Image.open(strin)
+    (w, h) = img.size
+    print('w=%d, h=%d', w, h)
+    new_img = img.resize((225, 225))
+    new_img.save(strin)

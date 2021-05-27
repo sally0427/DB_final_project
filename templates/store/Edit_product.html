@@ -22,23 +22,29 @@
 
 {% block show_product %}
     {% for product in ProductList %}
+
         <div class="col">
             <div class="card shadow-sm">
-                <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
+                <img class="bd-placeholder-img card-img-top" width="100%" height="225"
                      xmlns="http://www.w3.org/2000/svg"
                      role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice"
-                     focusable="false">
+                     focusable="false"
+                     {% if product.image%}
+                         src = "{{ product.image.url }}"
+                     {% endif %}
+                     >
+
                     <title>Placeholder</title>
                     <rect width="100%" height="100%" fill="#55595c"/>
-                    <text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
-                </svg>
                 <div class="card-body">
                     <p class="card-text">
                         {{ product.Pname }}
                     </p>
                     <div class="d-flex justify-content-between align-items-center">
                         <div class="btn-group">
-                            <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                            <a href="/uber_store/upload_product_img/?Pid={{ product.Pid }}">
+                                <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                            </a>
                             <a type="button" class="btn btn-sm btn-outline-secondary" href="?Pid={{ product.Pid }}">Delete</a>
                         </div>
                         <small class="text-muted">{{ product.Pprice }} 元</small>
