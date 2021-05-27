@@ -22,6 +22,8 @@ class Product(models.Model):
     Pname = models.CharField(max_length=20, null=True)
     Ptime = models.DateField(null=True)
     Pprice = models.IntegerField(null=True)
+    image = models.ImageField(upload_to='product_image/', blank=False, null=True, default=None)
+    upload_date = models.DateField(default=timezone.now)
 
 class Photo(models.Model):
     # def user_directory_path(instance, filename):

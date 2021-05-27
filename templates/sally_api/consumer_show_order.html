@@ -7,14 +7,17 @@
   <h2>顯示一張order所有資料</h2>
   <table border="1" cellpadding="0" cellspacing="0">
     <th>Cname</th><th>Oid</th><th>Ocount</th><th>Oprice</th><th>Ocreated</th><th>Sname</th>
-    <tr>
-    <td>{{ data.Cname }} </td>
-    <td>{{ data.Oid }} </td>
-    <td>{{ data.Ocount }} </td>
-    <td>{{ data.Oprice }} </td>
-    <td>{{ data.Ocreated }} </td>
-    <td>{{ data.Sname }} </td>
-    </tr>
+      {% for order in orders %}
+        <tr>
+        <td>{{ userinfo.username }} </td>
+        <td>{{ order.Oid }} </td>
+        <td>{{ order.Ocount }} </td>
+        <td>{{ order.Oprice }} </td>
+        <td>{{ order.Ocreated }} </td>
+        <td>{{ order.S.Sname }} </td>
+        </tr>
+      {% endfor %}
+
   </table>
  </body>
 </html>

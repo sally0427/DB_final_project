@@ -43,8 +43,9 @@ urlpatterns = [
                   path('add_order_post/', order.add_order_post, name='add_order_post'),
                   path('mod_Ostatus_post/', order.mod_Ostatus_post, name='mod_Ostatus_post'),
                   path('mod_Odeliver_post/', order.mod_Odeliver_post, name='mod_Odeliver_post'),
-                  path('user_show_order/', order.user_show_order, name='user_show_order'),
+                  path('user_show_order/', views.user_show_order, name='user_show_order'),
                   path('store_show_order/', order.store_show_order, name='store_show_order'),
                   path('deliver_show_order/', order.deliver_show_order, name='deliver_show_order'),
 
               ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

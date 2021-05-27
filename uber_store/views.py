@@ -36,7 +36,7 @@ def show_product_img(ProductList):
     q1.connector = 'OR'
     for product in ProductList:
         q1.children.append(('P_id', product.Pid))
-    PhotoList = models.Photo.objects.filter(P_id = q1).order_by('P_id')
+    PhotoList = models.Photo.objects.filter(q1).order_by('P_id')
     return PhotoList
 
 @login_required(login_url='/uber_eat/login/')
