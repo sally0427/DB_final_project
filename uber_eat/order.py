@@ -12,8 +12,8 @@ def add_order(request):
 
 def add_order_post(request):
     oid = random.randint(0,10000000)
-    addOrder = Order(Oid = oid, C_id = request.POST['C'], S_id = request.POST['S']).save()
-    Plist = request.POST.getlist('P')
+    addOrder = Order(Oid = oid, C_id = request.GET['C'], S_id = request.GET['S']).save()
+    Plist = request.GET.getlist('P')
     price = 0
     num = 0
     for item in Plist:

@@ -23,8 +23,14 @@ from django.http import HttpResponse
 
 
 
-
+@login_required(login_url='/login/')
 def show_store_page(request):
+    if request.user.is_authenticated:
+        username = request.user.username
+        try:
+            userinfo = User.objects.get(username=username)
+        except:
+            pass
     if request.method == 'GET':
         Storeinfo = Store.objects.get(Sid=request.GET['Sid'])
         ProductList = show_product(Storeinfo.Sid)
@@ -69,7 +75,7 @@ def index(request, pid=None, del_pass=None):
 def logout(request):
     if request.user.is_authenticated:
         auth.logout(request)
-        Session.objects.all().delete()
+        # Session.objects.all().delete()
         return redirect('/uber_eat/login/')
     return redirect('/')
 
