@@ -30,8 +30,15 @@ def add_product(request):
             return redirect('/')
     return render(request, 'registration/add_product.html', locals())
 
+def show_product_img(ProductList):
+    from django.db.models import Q
+    q1 = Q()
+    q1.connector = 'OR'
+    for product in ProductList:
+        q1.children.append(('P_id', product.Pid))
+    PhotoList = models.Photo.objects.filter(P_id = q1).order_by('P_id')
+    return PhotoList
 
-# Create your views here.
 @login_required(login_url='/uber_eat/login/')
 def store_page(request):
     if request.user.is_authenticated:
@@ -42,6 +49,7 @@ def store_page(request):
             if Storeinfo is not None:
                 Sname = Storeinfo.Sname
                 ProductList = show_product(Storeinfo.Sid)
+                PhotoList = show_product_img(ProductList)
             if request.method == 'GET':
                 models.Product.objects.filter(Pid=request.GET['Pid']).delete()
         except:
