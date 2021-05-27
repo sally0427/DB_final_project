@@ -22,8 +22,7 @@ import random
 from django.http import HttpResponse
 
 
-
-@login_required(login_url='/login/')
+@login_required(login_url='/uber_eat/login/')
 def show_store_page(request):
     if request.user.is_authenticated:
         username = request.user.username
@@ -120,7 +119,7 @@ def joinStore(request):
     return render(request, 'store/storeRegistration.html')
 
 
-@login_required(login_url='/login/')
+@login_required(login_url='/uber_eat/login/')
 def userinfo(request):
     if request.user.is_authenticated:
         username = request.user.username
