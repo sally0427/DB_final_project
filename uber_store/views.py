@@ -6,6 +6,7 @@ from uber_eat.product import show_product
 from django.contrib.auth.decorators import login_required
 import os
 
+
 @login_required(login_url='/uber_eat/login/')
 def add_product(request):
     if request.user.is_authenticated:
@@ -89,6 +90,7 @@ def add_store_post(request):
                 form = forms.SignUpForm()
     return render(request, 'registration/store_registration.html', locals())
     # Store.objects.create(Sname='test', Saddress='At Earth', Sphone='123456789')
+
 
 @login_required(login_url='/uber_eat/login/')
 def upload_product_img(request):
