@@ -8,6 +8,7 @@ media
 .vscode
 settings.py
 pyvenv.cfg
+migrations
 # Backup files #
 *.bak
  
