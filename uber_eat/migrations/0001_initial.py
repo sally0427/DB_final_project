@@ -3,8 +3,6 @@
 from django.conf import settings
 from django.db import migrations, models
 import django.db.models.deletion
-import django.utils.timezone
-import uber_eat.models
 
 
 class Migration(migrations.Migration):
@@ -29,14 +27,6 @@ class Migration(migrations.Migration):
                 ('C', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
                 ('D', models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='uber_deliver.deliver')),
                 ('S', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='uber_store.store')),
-            ],
-        ),
-        migrations.CreateModel(
-            name='Photo',
-            fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('image', models.ImageField(upload_to=uber_eat.models.Photo.user_directory_path)),
-                ('upload_date', models.DateField(default=django.utils.timezone.now)),
             ],
         ),
         migrations.CreateModel(

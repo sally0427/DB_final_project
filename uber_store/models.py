@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-
+from django.utils import timezone
 
 # Create your models here.
 
@@ -22,3 +22,12 @@ class Product(models.Model):
     Pname = models.CharField(max_length=20, null=True)
     Ptime = models.DateField(null=True)
     Pprice = models.IntegerField(null=True)
+
+class Photo(models.Model):
+    # def user_directory_path(instance, filename):
+    #     # file will be uploaded to MEDIA_ROOT/<Sid>/<Pid>
+    #     return '{0}/{1}'.format(instance, filename)
+    # user_directory_path
+    P = models.ForeignKey(Product, on_delete=models.CASCADE)
+    image = models.ImageField(upload_to='', blank=False, null=False)
+    upload_date = models.DateField(default=timezone.now)

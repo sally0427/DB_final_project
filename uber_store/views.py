@@ -6,6 +6,7 @@ from uber_eat.product import show_product
 from django.contrib.auth.decorators import login_required
 import os
 
+
 @login_required(login_url='/uber_eat/login/')
 def add_product(request):
     if request.user.is_authenticated:
@@ -71,9 +72,9 @@ def add_store_post(request):
                     Sadderss = request.POST['Saddress']
                     Sphone = request.POST['Sphone']
                     models.Store.objects.create(user=user, Sname=Sname, Saddress=Sadderss, Sphone=Sphone)
-                    path = "static\\" + str(user.id) + "\\"
-                    if not os.path.isdir(path):
-                        os.makedirs(path)
+                    # path = "static\\" + str(user.id) + "\\"
+                    # if not os.path.isdir(path):
+                    #     os.makedirs(path)
                     return redirect('/')
                 else:
                     messages.add_message(request, messages.INFO, '請檢查輸入的欄位內容')
@@ -81,3 +82,21 @@ def add_store_post(request):
                 form = forms.SignUpForm()
     return render(request, 'registration/store_registration.html', locals())
     # Store.objects.create(Sname='test', Saddress='At Earth', Sphone='123456789')
+
+
+@login_required(login_url='/uber_eat/login/')
+def upload_product_img(request):
+    photos = models.Photo.objects.all()
+    form = forms.UploadModelForm()
+    if request.method == "POST":
+        form = forms.UploadModelForm(request.POST, request.FILES)
+        # a = form.image
+        b = form.Meta
+        if form.is_valid():
+            form.save()
+            return redirect('/')
+    context = {
+        'uber_eat': photos,
+        'form': form
+    }
+    return render(request, 'sally_api/image.html', context)
