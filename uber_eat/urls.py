@@ -22,7 +22,8 @@ urlpatterns = [
     path('', views.home, name='home'),
     path('login/', views.login, name='login'),
     path('logout/', views.logout, name='logout'),
-    path('store/', views.show_store_page, name='show_store_page')
+    path('store/', views.show_store_page, name='show_store_page'),
+
     # path('login/', views.login, name='login')
     # path('backCheck', views.SignupBack, name='backCheck'),
 ]

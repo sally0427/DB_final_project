@@ -9,10 +9,11 @@ from uber_deliver.models import Deliver
 class Order(models.Model):
     ORDER_STATUS_CHOICES = (
         (1, '正在建立訂單'),
-        (2, '店家出貨'),
-        (3, '外送員領貨'),
-        (4, '外送員抵達'),
-        (5, '消費者領取貨(結束訂單)')
+        (2, '店家已接單'),
+        (3, '店家出貨'),
+        (4, '外送員領貨'),
+        (5, '外送員抵達'),
+        (6, '消費者領取貨(結束訂單)')
     )
 
     Oid = models.AutoField(primary_key=True, auto_created=True)

@@ -1,6 +1,10 @@
 from django.contrib import messages
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 import string
+
+from django.urls import reverse
+
 from uber_eat.models import Order, OrderGoods
 from uber_store import forms, models
 from django.contrib.auth.models import User
@@ -122,14 +126,18 @@ def store_show_order(request):
             orders = Order.objects.filter(S=Storeinfo).all().order_by('Oid')
         except:
             pass
-        if request.method == 'GET':
-            try:
-                orderinfo = Order.objects.get(Oid=request.GET['Oid'])
-                orderinfo.Ostatus += 1;
-                orderinfo.save()
-            except:
-                pass
         return render(request, 'orders/store_show_order.html', locals())
+
+
+def store_get_order(request):
+    try:
+        orderinfo = Order.objects.get(Oid=request.GET['Oid'])
+        orderinfo.Ostatus += 1
+        orderinfo.save()
+        return HttpResponseRedirect(reverse('store_show_order'))
+    except:
+        pass
+
 
 def imgPer(file):
     from PIL import Image

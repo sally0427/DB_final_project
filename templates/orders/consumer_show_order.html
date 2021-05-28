@@ -1,21 +1,7 @@
-{% extends 'store/index.html' %}
-{% block store_title %}
-    <section class="py-5 text-center container">
-        <div class="row py-lg-5">
-            <div class="col-lg-6 col-md-8 mx-auto">
-                <h2>訂單詳情</h2>
-            </div>
-        </div>
-    </section>
-{% endblock %}
+{% extends 'orders/order_base.html' %}
+
+
 {% block show_product %}
-    <!-- <link rel="stylesheet" href="css/all.min.css"> -->
-    <!DOCTYPE html>
-    <html>
-    <head>
-        <title>顯示單一user的order所有資料</title>
-    </head>
-    <body>
     <section class="py-5 text-center container">
         <table class="table">
             <thead>
@@ -41,39 +27,9 @@
                     {% block get_order %}{% endblock %}
                 </tr>
             {% endfor %}
+            {% block deliver_order %}
+            {% endblock %}
             </tbody>
         </table>
     </section>
-    <!--
-  <main class="tm-main">
-    <div id="order" class="tm-page-content">
-      {% for order in orders %}
-        <tr>
-        <div id="all-order" class="tm-tab-content">
-          <div class="tm-list-item">          
-            <div class="tm-black-bg tm-list-item-text">
-              <h3 class="tm-list-item-name">訂單者 <span class="tm-list-item-price">{{ userinfo.username }}</span></h3>
-              <h3 class="tm-list-item-name">訂單編號 <span class="tm-list-item-price">{{ order.Oid }}</span></h3>
-              <h3 class="tm-list-item-name">訂單總價 <span class="tm-list-item-price">${{ order.Oprice }}</span></h3>
-              <h3 class="tm-list-item-name">物品數量 <span class="tm-list-item-price">{{ order.Ocount }}</span></h3>
-              <h3 class="tm-list-item-name">訂單創建時間 <span class="tm-list-item-price">{{ order.Ocreated }}</span></h3>
-              <h3 class="tm-list-item-name">店家名稱 <span class="tm-list-item-price">{{ order.S.Sname }}</span></h3>
-            </div>
-          </div>
-        </tr>
-      {% endfor %} -->
-    <!-- <div id="cold" class="tm-tab-content">
-      <div class="tm-list">
-        <div class="tm-list-item">
-          <img src="img/iced-americano.png" alt="Image" class="tm-list-item-img">
-          <div class="tm-black-bg tm-list-item-text">
-            <h3 class="tm-list-item-name">Iced Americano<span class="tm-list-item-price">$10.25</span></h3>
-            <p class="tm-list-item-description">Here is a short description for the first item. Wave Cafe Template is provided by Tooplate.</p>
-          </div>
-        </div> -->
-
-    <!-- end Drink Menu Page -->
-    </div>
-    </body>
-    </html>
 {% endblock %}

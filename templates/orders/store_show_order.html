@@ -11,17 +11,25 @@
     </style>
     <td align='center' valign="middle">
     {% if order.Ostatus == 1 %}
-        <a href="/uber_store/store_show_order/?Oid={{ order.Oid }}">
+        <a href="/uber_store/store_get_order/?Oid={{ order.Oid }}">
             <button type="button" class="btn-clipboard btn btn-outline-info">
                 接單
             </button>
         </a>
-    {% else %}
-        <a href="">
+    {% elif order.Ostatus == 2 %}
+        <a href="/uber_store/store_get_order/?Oid={{ order.Oid }}">
             <button type="button" class="btn-clipboard btn btn-outline-info">
-                已接單
+                已接單->準備完成
             </button>
         </a>
+    {% elif order.Ostatus == 3 %}
+        <button type="button" class="btn-clipboard btn btn-outline-info">
+            等待外送員領貨中...
+        </button>
+    {% else %}
+        <button type="button" class="btn-clipboard btn btn-outline-info">
+            已出貨
+        </button>
     {% endif %}
     </td>
 {% endblock %}

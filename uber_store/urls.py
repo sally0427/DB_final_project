@@ -22,5 +22,6 @@ urlpatterns = [
     path('joinStore/', views.add_store_post, name='home'),
     path('upload_product_img/', views.upload_product_img, name='upload_product_img'),
     path('store_show_order/', views.store_show_order, name='store_show_order'),
+    path('store_get_order/', views.store_get_order, name='store_get_order'),
     # path('backCheck', views.SignupBack, name='backCheck'),
 ]
