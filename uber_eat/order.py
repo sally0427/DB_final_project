@@ -44,18 +44,6 @@ def user_show_order(request):
             pass
         return render(request, 'sally_api/../templates/orders/consumer_show_order.html', locals())
 
-
-# @login_required(login_url='/uber_eat/login/')
-# def store_show_order(request):
-#     if request.user.is_authenticated:
-#         username = request.user.username
-#         try:
-#             userinfo = User.objects.get(username=username)
-#             orders = Order.objects.filter(C=userinfo).all().order_by('Oid')
-#         except:
-#             pass
-#         return render(request, 'sally_api/../templates/orders/store_show_order.html', locals())
-
 def deliver_show_order(request):
     orders = Order.objects.filter(Ostatus=2).order_by('Oid')
     orderlist=list(orders)

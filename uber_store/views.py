@@ -101,19 +101,31 @@ def add_store_post(request):
 def upload_product_img(request):
     form = forms.UploadModelForm()
     productinfo = models.Product.objects.get(Pid=request.GET['Pid'])
-    Storeinfo = models.Store.objects.get(Sid=productinfo.S_id)
     if request.method == "POST":
         form = forms.UploadModelForm(request.POST, request.FILES)
         if form.is_valid():
             productinfo.image = request.FILES['image']
-            # Storeinfo.image = request.FILES['image']
             productinfo.save()
-            # Storeinfo.save()
             return redirect('/uber_store')
     context = {
         'form': form
     }
     return render(request, 'sally_api/image.html', context)
+
+@login_required(login_url='/uber_eat/login/')
+def upload_store_img(request):
+    form = forms.UploadModelForm()
+    Storeinfo = models.Store.objects.get(Sid=request.GET['Pid'])
+    if request.method == "POST":
+        form = forms.UploadModelForm(request.POST, request.FILES)
+        if form.is_valid():
+            Storeinfo.image = request.FILES['image']
+            Storeinfo.save()
+            return redirect('/uber_store')
+    context = {
+        'form': form
+    }
+    return render(request, 'sally_api/image.html', context)    
 
 
 @login_required(login_url='/uber_eat/login/')
