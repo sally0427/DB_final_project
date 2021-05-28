@@ -18,21 +18,25 @@
     {% for product in ProductList %}
         <div class="col">
             <div class="card shadow-sm">
-                <img class="bd-placeholder-img card-img-top" width="100%" height="225"
-                     xmlns="http://www.w3.org/2000/svg"
-                     role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice"
-                     focusable="false"
-                     src = "{% static '/index_blade.jpg' %}">
-                     
-                    <title>Placeholder</title>
-                    <rect width="100%" height="100%" fill="#55595c"/>
-                    <!-- <text x="50%" y="50%" fill="#eceeef" dy=".3em">hahah</text> -->
+                <div class="bd-placeholder-img card-img-top" width="100%" height="225" style="width: 100%; height: 225px; position: relative;"
+                     aria-label="Placeholder: Thumbnail">
+                    <img
+                            {% if product.image %}
+                                src="{{ product.image.url }}"
+                            {% endif %}
+                    style="max-width: 100%; max-height: 100%; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);"
+                    >
+                </div>
+                <title>Placeholder</title>
+                <rect width="100%" height="100%" fill="#55595c"/>
+                <!-- <text x="50%" y="50%" fill="#eceeef" dy=".3em">hahah</text> -->
                 <div class="card-body">
                     <p class="card-text">
                         {{ product.Pname }}
                     </p>
                     <div class="d-flex justify-content-between align-items-center">
-                        <input class="input-group-field" value="0" type="number" name="count" min="0" id="{{ product.Pid }}">
+                        <input class="input-group-field" value="0" type="number" name="count" min="0"
+                               id="{{ product.Pid }}">
                         <small class="text-muted">{{ product.Pprice }} 元</small>
                     </div>
                 </div>
@@ -44,29 +48,31 @@
 
 {% block submit %}
 
-    <a href="" id ='add_order'>
+    <a href="" id='add_order'>
         <button onclick="tests()">tests</button>
     </a>
-    <script src="https://code.jquery.com/jquery-1.11.2.js" type = "text/javascript"></script>
-        <script type = "text/javascript" src= {% static 'js/Quttons.js' %} ></script>
-        <script type = "text/javascript" src= {% static 'js/velocity.js' %} ></script>
-        <script type = "text/javascript" src= {% static 'js/velocity.ui.js' %} ></script>
-        <script type = "text/javascript" src= {% static 'js/javascript_session_library.js' %} ></script>
-        <link rel="stylesheet" href="{% static 'css/Quttons.css' %}">
-        <script>
-            $(function () {
+    <script src="https://code.jquery.com/jquery-1.11.2.js" type="text/javascript"></script>
+    <script type="text/javascript" src={% static 'js/Quttons.js' %}></script>
+    <script type="text/javascript" src={% static 'js/velocity.js' %}></script>
+    <script type="text/javascript" src={% static 'js/velocity.ui.js' %}></script>
+    <script type="text/javascript" src={% static 'js/javascript_session_library.js' %}></script>
+    <link rel="stylesheet" href="{% static 'css/Quttons.css' %}">
+    <script>
+        $(function () {
 
-            });
-            function tests(){
-                data=[];
-                count=0;
-                {% for product in ProductList %}
-                    countnum = document.getElementById({{ product.Pid }})
-                    data[count]= 'P='+"{{product.Pid}},"+countnum.value+'&';
-                    count++;
-                {% endfor %}
-                document.getElementById('add_order').href='/add_order_post/?'+data.join('')+'S='+{{ Storeinfo.Sid }}+'&C='+{{ userinfo.id }};
-                console.log(data.join(''));
-            }
-        </script>
+        });
+
+        function tests() {
+            data = [];
+            count = 0;
+            {% for product in ProductList %}
+                countnum = document.getElementById({{ product.Pid }})
+                data[count] = 'P=' + "{{product.Pid}}," + countnum.value + '&';
+                count++;
+            {% endfor %}
+            document.getElementById('add_order').href = '/add_order_post/?' + data.join('') + 'S='+{{ Storeinfo.Sid }}+
+            '&C=' +{{ userinfo.id }};
+            console.log(data.join(''));
+        }
+    </script>
 {% endblock %}
