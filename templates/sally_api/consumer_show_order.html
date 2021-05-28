@@ -1,5 +1,14 @@
-{% extends 'carousel/index.html' %}
-{% block store %}
+{% extends 'store/index.html' %}
+{% block store_title %}
+    <section class="py-5 text-center container">
+        <div class="row py-lg-5">
+            <div class="col-lg-6 col-md-8 mx-auto">
+                      <h2>訂單詳情</h2>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+{% block show_product %}
 <!-- <link rel="stylesheet" href="css/all.min.css"> -->
 <!DOCTYPE html>
 <html>
@@ -7,17 +16,19 @@
   <title>顯示單一user的order所有資料</title>
  </head>
  <body>
-  <h2>訂單詳情</h2>
-  <table border="3" cellpadding="10" cellspacing="15">
+  <style>
+    .td{width:100px;overflow:hidden}
+  </style> 
+  <table border="3" cellpadding="10" cellspacing="20">
     <th>訂單者</th><th>訂單編號</th><th>物品數量</th><th>訂單總價</th><th>訂單創建時間</th><th>店家名稱</th>
       {% for order in orders %}
         <tr>
-        <td>{{ userinfo.username }} </td>
-        <td>{{ order.Oid }} </td>
-        <td>{{ order.Ocount }} </td>
-        <td>{{ order.Oprice }} </td>
-        <td>{{ order.Ocreated }} </td>
-        <td>{{ order.S.Sname }} </td>
+        <td align='center' valign="middle">{{ userinfo.username }} </td>
+        <td align='center' valign="middle">{{ order.Oid }} </td>
+        <td align='center' valign="middle">{{ order.Ocount }} </td>
+        <td align='center' valign="middle">{{ order.Oprice }} </td>
+        <td align='center' valign="middle">{{ order.Ocreated }} </td>
+        <td align='center' valign="middle">{{ order.S.Sname }} </td>
         </tr>
       {% endfor %}
 

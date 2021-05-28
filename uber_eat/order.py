@@ -43,12 +43,6 @@ def user_show_order(request):
             Oprice = order.Oprice
             Ocreated = order.Ocreated
             Cname = User.objects.get(id=order.C_id).username
-            OG = OrderGoods(id=order.Oid)
-            OGcount = OG.OGcount
-            P = Product(Pid = OG.P_id)
-            Pname = P.Pname
-            Pprice = P.Pprice
-            Pimage = P.image
             return render(request, 'sally_api/consumer_show_order.html', locals())
         except:
             errormessage = " (讀取錯誤!)"
