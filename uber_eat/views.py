@@ -6,7 +6,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib.sessions.models import Session
 from django.shortcuts import render
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from django.views.generic import CreateView
 from django.contrib import messages
 from uber_eat import forms
@@ -22,7 +22,6 @@ from uber_eat.store import show_store
 import random
 from django.http import HttpResponse
 
-
 @login_required(login_url='/uber_eat/login/')
 def user_show_order(request):
     if request.user.is_authenticated:
@@ -35,7 +34,16 @@ def user_show_order(request):
         return render(request, 'orders/consumer_show_order.html', locals())
 
 
-
+def user_get_order(request):
+    try:
+        orderinfo = Order.objects.get(Oid=request.GET['Oid'])
+        if orderinfo.Ostatus == 3:
+            orderinfo.D = models.Deliver.objects.get(user=request.user)
+        orderinfo.Ostatus += 1
+        orderinfo.save()
+        return HttpResponseRedirect(reverse('show_deliver_order'))
+    except:
+        pass
 
 @login_required(login_url='/uber_eat/login/')
 def show_store_page(request):

@@ -11,8 +11,8 @@
                 <th scope="col">物品數量</th>
                 <th scope="col">訂單總價</th>
                 <th scope="col">訂單創建時間</th>
-                <th scope="col">店家名稱</th>
-                {% block edit_order %}{% endblock %}
+                <th scope="col">訂單狀態</th>
+                <th scope="col">店家名稱</th> 
             </tr>
             </thead>
             <tbody>
@@ -23,6 +23,19 @@
                     <td align='center' valign="middle">{{ order.Ocount }} </td>
                     <td align='center' valign="middle">{{ order.Oprice }} </td>
                     <td align='center' valign="middle">{{ order.Ocreated }} </td>
+                    {% if order.Ostatus == 1 %}
+                        <td align='center' valign="middle">創建訂單 </td>
+                    {%elif order.Ostatus == 2 %}
+                        <td align='center' valign="middle">店家已接單 </td>
+                    {%elif order.Ostatus == 3 %}
+                        <td align='center' valign="middle">店家出貨 </td>  
+                    {%elif order.Ostatus == 4 %}
+                        <td align='center' valign="middle">外送員領貨 </td>
+                    {%elif order.Ostatus == 5 %}
+                        <td align='center' valign="middle">外送員抵達 </td> 
+                    {%elif order.Ostatus == 6 %}
+                        <td align='center' valign="middle">消費者領取貨(結束訂單) </td>
+                    {% endif %}
                     <td align='center' valign="middle">{{ order.S.Sname }} </td>
                     {% block get_order %}{% endblock %}
                 </tr>
