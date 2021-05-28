@@ -1,0 +1,27 @@
+{% extends 'orders/consumer_show_order.html' %}
+{% block edit_order %}
+    <th scope="col">接受訂單</th>{% endblock %}
+{% block get_order %}
+    <style>
+        .btn-clipboard {
+            position: static;
+            padding: .25rem .5rem;
+            font-size: .80em;
+        }
+    </style>
+    <td align='center' valign="middle">
+    {% if order.Ostatus == 1 %}
+        <a href="/uber_store/store_show_order/?Oid={{ order.Oid }}">
+            <button type="button" class="btn-clipboard btn btn-outline-info">
+                接單
+            </button>
+        </a>
+    {% else %}
+        <a href="">
+            <button type="button" class="btn-clipboard btn btn-outline-info">
+                已接單
+            </button>
+        </a>
+    {% endif %}
+    </td>
+{% endblock %}

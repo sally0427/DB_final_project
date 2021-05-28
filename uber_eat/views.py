@@ -1,3 +1,4 @@
+import requests
 from django.http import HttpResponseRedirect
 from django.contrib.auth import authenticate
 from django.contrib import auth
@@ -31,20 +32,9 @@ def user_show_order(request):
             orders = Order.objects.filter(C=userinfo).all().order_by('Oid')
         except:
             pass
-        return render(request, 'sally_api/consumer_show_order.html', locals())
+        return render(request, 'orders/consumer_show_order.html', locals())
 
 
-@login_required(login_url='/uber_eat/login/')
-def store_show_order(request):
-    if request.user.is_authenticated:
-        username = request.user.username
-        try:
-            userinfo = User.objects.get(username=username)
-            Storeinfo = Store.objects.get(user=userinfo)
-            orders = Order.objects.filter(S=Storeinfo).all().order_by('Oid')
-        except:
-            pass
-        return render(request, 'sally_api/consumer_show_order.html', locals())
 
 
 @login_required(login_url='/uber_eat/login/')

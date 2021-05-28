@@ -4,6 +4,7 @@ from uber_deliver import forms
 from django.contrib.auth.models import User
 from uber_deliver import models
 from django.contrib.auth.decorators import login_required
+from uber_eat.models import Order,OrderGoods
 # Create your views here.
 
 
@@ -30,3 +31,16 @@ def add_deliver_post(request):
             else:
                 form = forms.SignUpForm()
     return render(request, 'registration/deliver_registration.html', locals())
+
+
+@login_required(login_url='/uber_eat/login/')
+def show_deliver_order(request):
+    if request.user.is_authenticated:
+        username = request.user.username
+        user = User.objects.get(username=username)
+        try:
+            DeliverInfo = models.Deliver.objects.get(user=user)
+            orders = Order.objects.filter(D=None, Ostatus=2).all().order_by('Oid')
+            return render(request, 'orders/store_show_order.html', locals())
+        except:
+            pass
