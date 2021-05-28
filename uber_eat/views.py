@@ -31,7 +31,7 @@ def user_show_order(request):
             orders = Order.objects.filter(C=userinfo).all().order_by('Oid')
         except:
             pass
-        return render(request, 'sally_api/consumer_show_order.html', locals())
+        return render(request, 'orders/consumer_show_order.html', locals())
 
 
 @login_required(login_url='/uber_eat/login/')
@@ -44,7 +44,16 @@ def store_show_order(request):
             orders = Order.objects.filter(S=Storeinfo).all().order_by('Oid')
         except:
             pass
-        return render(request, 'sally_api/consumer_show_order.html', locals())
+        return render(request, 'orders/store_show_order.html', locals())
+
+def store_get_order(request):
+    try:
+        orderinfo = Order.objects.get(Oid=request.GET['Oid'])
+        orderinfo.Ostatus += 1;
+        orderinfo.save()
+        return render(request, 'orders/store_show_order.html', locals())
+    except:
+        pass
 
 
 @login_required(login_url='/uber_eat/login/')

@@ -26,6 +26,7 @@
                 <th scope="col">訂單總價</th>
                 <th scope="col">訂單創建時間</th>
                 <th scope="col">店家名稱</th>
+                {% block edit_order %}{% endblock %}
             </tr>
             </thead>
             <tbody>
@@ -37,6 +38,7 @@
                     <td align='center' valign="middle">{{ order.Oprice }} </td>
                     <td align='center' valign="middle">{{ order.Ocreated }} </td>
                     <td align='center' valign="middle">{{ order.S.Sname }} </td>
+                    {% block get_order %}{% endblock %}
                 </tr>
             {% endfor %}
             </tbody>
