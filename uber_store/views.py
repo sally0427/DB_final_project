@@ -84,9 +84,6 @@ def add_store_post(request):
                     Sadderss = request.POST['Saddress']
                     Sphone = request.POST['Sphone']
                     models.Store.objects.create(user=user, Sname=Sname, Saddress=Sadderss, Sphone=Sphone)
-                    # path = "static\\" + str(user.id) + "\\"
-                    # if not os.path.isdir(path):
-                    #     os.makedirs(path)
                     return redirect('/')
                 else:
                     messages.add_message(request, messages.INFO, '請檢查輸入的欄位內容')
@@ -100,13 +97,14 @@ def add_store_post(request):
 def upload_product_img(request):
     form = forms.UploadModelForm()
     productinfo = models.Product.objects.get(Pid=request.GET['Pid'])
-
+    Storeinfo = models.Store.objects.get(Sid=productinfo.S_id)
     if request.method == "POST":
         form = forms.UploadModelForm(request.POST, request.FILES)
         if form.is_valid():
             productinfo.image = request.FILES['image']
+            Storeinfo.image = request.FILES['image']
             productinfo.save()
-            # form.save()
+            Storeinfo.save()
             return redirect('/uber_store')
     context = {
         'form': form
