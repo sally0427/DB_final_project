@@ -33,7 +33,13 @@ def user_show_order(request):
         username = request.user.username
         try:
             userinfo = User.objects.get(username=username)
-            orders = Order.objects.filter(C=userinfo).all().order_by('Oid')
+            order = Order(C=userinfo)
+            Oid = order.Oid
+            Ocount = order.Ocount
+            Oprice = order.Oprice
+            Ocreated = order.Ocreated
+            Cname = User.objects.get(id=order.C_id).username
+            return render(request, 'sally_api/consumer_show_order.html', locals())
         except:
             pass
         return render(request, 'sally_api/consumer_show_order.html', locals())
