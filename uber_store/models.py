@@ -12,7 +12,7 @@ class Store(models.Model):
     Saddress = models.CharField(max_length=20, null=True)
     Sphone = models.CharField(max_length=20, null=True)
     Stransit_price = models.DecimalField(max_digits=10, decimal_places=2, default='30')
-
+    image = models.ImageField(upload_to='product_image/', blank=False, null=True, default=None)
     def __str__(self):
         return self.Sname
 
