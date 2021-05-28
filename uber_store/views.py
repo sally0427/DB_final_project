@@ -1,7 +1,7 @@
 from django.contrib import messages
 from django.shortcuts import render, redirect
 import string
-
+from uber_eat.models import Order, OrderGoods
 from uber_store import forms, models
 from django.contrib.auth.models import User
 from uber_eat.product import show_product
@@ -102,15 +102,34 @@ def upload_product_img(request):
         form = forms.UploadModelForm(request.POST, request.FILES)
         if form.is_valid():
             productinfo.image = request.FILES['image']
-            Storeinfo.image = request.FILES['image']
+            # Storeinfo.image = request.FILES['image']
             productinfo.save()
-            Storeinfo.save()
+            # Storeinfo.save()
             return redirect('/uber_store')
     context = {
         'form': form
     }
     return render(request, 'sally_api/image.html', context)
 
+
+@login_required(login_url='/uber_eat/login/')
+def store_show_order(request):
+    if request.user.is_authenticated:
+        username = request.user.username
+        try:
+            userinfo = User.objects.get(username=username)
+            Storeinfo = models.Store.objects.get(user=userinfo)
+            orders = Order.objects.filter(S=Storeinfo).all().order_by('Oid')
+        except:
+            pass
+        if request.method == 'GET':
+            try:
+                orderinfo = Order.objects.get(Oid=request.GET['Oid'])
+                orderinfo.Ostatus += 1;
+                orderinfo.save()
+            except:
+                pass
+        return render(request, 'orders/store_show_order.html', locals())
 
 def imgPer(file):
     from PIL import Image

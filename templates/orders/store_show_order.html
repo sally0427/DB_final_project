@@ -10,10 +10,18 @@
         }
     </style>
     <td align='center' valign="middle">
-        <a href="/store_get_order/?Oid={{ order.Oid }}">
+    {% if order.Ostatus == 1 %}
+        <a href="/uber_store/store_show_order/?Oid={{ order.Oid }}">
             <button type="button" class="btn-clipboard btn btn-outline-info">
                 接單
             </button>
         </a>
+    {% else %}
+        <a href="">
+            <button type="button" class="btn-clipboard btn btn-outline-info">
+                已接單
+            </button>
+        </a>
+    {% endif %}
     </td>
 {% endblock %}

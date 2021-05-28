@@ -18,5 +18,6 @@ from uber_deliver import views
 
 urlpatterns = [
     path('joinDeliver/', views.add_deliver_post, name='home'),
+    path('show_deliver_order/', views.show_deliver_order, name='show_deliver_order'),
     # path('backCheck', views.SignupBack, name='backCheck'),
 ]
