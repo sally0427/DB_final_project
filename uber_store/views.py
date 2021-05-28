@@ -106,7 +106,6 @@ def upload_product_img(request):
         if form.is_valid():
             productinfo.image = request.FILES['image']
             productinfo.save()
-            imgPer(productinfo.image)
             # form.save()
             return redirect('/uber_store')
     context = {
