@@ -35,6 +35,19 @@ def user_show_order(request):
 
 
 @login_required(login_url='/uber_eat/login/')
+def store_show_order(request):
+    if request.user.is_authenticated:
+        username = request.user.username
+        try:
+            userinfo = User.objects.get(username=username)
+            Storeinfo = Store.objects.get(user=userinfo)
+            orders = Order.objects.filter(S=Storeinfo).all().order_by('Oid')
+        except:
+            pass
+        return render(request, 'sally_api/consumer_show_order.html', locals())
+
+
+@login_required(login_url='/uber_eat/login/')
 def show_store_page(request):
     if request.user.is_authenticated:
         username = request.user.username

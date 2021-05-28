@@ -85,6 +85,7 @@
         </div>
     </div>
     <div class="navbar navbar-dark bg-dark shadow-sm">
+
         <div class="container">
             <a href="/" class="navbar-brand d-flex align-items-center">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor"
@@ -99,21 +100,16 @@
                     aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
+
         </div>
     </div>
+
 </header>
 
 <main>
     {% block store_title %}{% endblock %}
-    <div class="album py-5 bg-light">
-        <div class="container">
-
-            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
                 {% block show_product %}
                 {% endblock %}
-            </div>
-        </div>
-    </div>
 {% block submit %}
 {% endblock %}
 </main>
