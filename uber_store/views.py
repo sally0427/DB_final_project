@@ -135,7 +135,7 @@ def store_show_order(request):
         try:
             userinfo = User.objects.get(username=username)
             Storeinfo = models.Store.objects.get(user=userinfo)
-            orders = Order.objects.filter(S=Storeinfo).all().order_by('Oid')
+            orders = Order.objects.filter(S=Storeinfo).all().order_by('Ocreated')
         except:
             pass
         return render(request, 'orders/store_show_order.html', locals())

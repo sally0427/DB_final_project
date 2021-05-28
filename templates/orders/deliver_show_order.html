@@ -47,6 +47,18 @@
             font-size: .80em;
         }
     </style>
+    <thead>
+    <tr>
+        <th scope="col">訂單者</th>
+        <th scope="col">訂單編號</th>
+        <th scope="col">物品數量</th>
+        <th scope="col">訂單總價</th>
+        <th scope="col">訂單創建時間</th>
+        <th scope="col">店家名稱</th>
+        <th scope="col">已接訂單</th>
+    </tr>
+    </thead>
+    <tbody>
     {% for order in deliverorders %}
         <tr>
             <td align='center' valign="middle">{{ order.C.username }} </td>
@@ -84,4 +96,5 @@
             </td>
         </tr>
     {% endfor %}
+    </tbody>
 {% endblock %}
