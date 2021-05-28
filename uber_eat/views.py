@@ -44,7 +44,7 @@ def store_show_order(request):
             orders = Order.objects.filter(S=Storeinfo).all().order_by('Oid')
         except:
             pass
-        return render(request, 'sally_api/store_show_order.html', locals())
+        return render(request, 'sally_api/consumer_show_order.html', locals())
 
 
 @login_required(login_url='/uber_eat/login/')
