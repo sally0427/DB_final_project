@@ -117,7 +117,7 @@ def upload_product_img(request):
 
 def imgPer(file):
     from PIL import Image
-    strin = '/Users/guanlin/PycharmProjects/DB_Ubereats/media/'
+    strin = 'D:/lessions/DB_final_project/media/'
     strin += str(file)
     print(strin)
     img = Image.open(strin)
