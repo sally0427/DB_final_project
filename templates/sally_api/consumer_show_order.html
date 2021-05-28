@@ -13,26 +13,24 @@
 <!DOCTYPE html>
 <html>
  <head>
-  <title>顯示單一user的order所有資料</title>
+ <title>顯示單一user的order所有資料</title>
  </head>
  <body>
-  <style>
-    .td{width:100px;overflow:hidden}
-  </style> 
-  <table border="3" cellpadding="10" cellspacing="20">
-    <th>訂單者</th><th>訂單編號</th><th>物品數量</th><th>訂單總價</th><th>訂單創建時間</th><th>店家名稱</th>
-      {% for order in orders %}
-        <tr>
-        <td align='center' valign="middle">{{ userinfo.username }} </td>
-        <td align='center' valign="middle">{{ order.Oid }} </td>
-        <td align='center' valign="middle">{{ order.Ocount }} </td>
-        <td align='center' valign="middle">{{ order.Oprice }} </td>
-        <td align='center' valign="middle">{{ order.Ocreated }} </td>
-        <td align='center' valign="middle">{{ order.S.Sname }} </td>
-        </tr>
-      {% endfor %}
-
-  </table>
+  <section class="py-5 text-center container">
+    <table border="3" cellpadding="10" cellspacing="20">
+      <th>訂單者</th><th>訂單編號</th><th>物品數量</th><th>訂單總價</th><th>訂單創建時間</th><th>店家名稱</th>
+        {% for order in orders %}
+          <tr>
+          <td align='center' valign="middle">{{ userinfo.username }} </td>
+          <td align='center' valign="middle">{{ order.Oid }} </td>
+          <td align='center' valign="middle">{{ order.Ocount }} </td>
+          <td align='center' valign="middle">{{ order.Oprice }} </td>
+          <td align='center' valign="middle">{{ order.Ocreated }} </td>
+          <td align='center' valign="middle">{{ order.S.Sname }} </td>
+          </tr>
+        {% endfor %}
+    </table>
+  </section>
 <!-- 
   <main class="tm-main">
     <div id="order" class="tm-page-content">
@@ -51,22 +49,6 @@
           </div>
         </tr>
       {% endfor %} -->
-    <!-- <div id="one-order" class="tm-page-content">
-      <tr>
-        <div id="all-order" class="tm-tab-content">
-          <div class="tm-list-item">          
-            <div class="tm-black-bg tm-list-item-text">
-              <h3 class="tm-list-item-name">OGcount <span class="tm-list-item-price">{{ OGcount }}</span></h3>
-              <h3 class="tm-list-item-name">訂單編號 <span class="tm-list-item-price">{{ order.Oid }}</span></h3>
-              <h3 class="tm-list-item-name">訂單總價 <span class="tm-list-item-price">${{ order.Oprice }}</span></h3>
-              <h3 class="tm-list-item-name">物品數量 <span class="tm-list-item-price">{{ order.Ocount }}</span></h3>
-              <h3 class="tm-list-item-name">訂單創建時間 <span class="tm-list-item-price">{{ order.Ocreated }}</span></h3>
-              <h3 class="tm-list-item-name">店家名稱 <span class="tm-list-item-price">{{ order.S.Sname }}</span></h3>
-            </div>
-          </div>
-        </div>
-      </tr>
-  -->
       <!-- <div id="cold" class="tm-tab-content">
         <div class="tm-list">
           <div class="tm-list-item">          
