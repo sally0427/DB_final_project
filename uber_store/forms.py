@@ -1,7 +1,7 @@
 from django import forms
-from uber_store.models import Store
+from uber_store.models import Store, Product, Photo
 from django.core.exceptions import ValidationError
-from .models import Photo
+
 
 class SignUpForm(forms.Form):
     Ｓname = forms.CharField(max_length=20)
@@ -22,10 +22,12 @@ class addProductForm(forms.Form):
     Pname = forms.CharField(label='商品名稱', max_length=10)
     Pprice = forms.CharField(label='商品價錢', max_length=10)
 
+
 class UploadModelForm(forms.ModelForm):
+    image = forms.FileInput(attrs={'class': 'form-control-file'})
     class Meta:
         model = Photo
-        fields = ['image', 'P']
+        fields = ['image']
         widgets = {
             'image': forms.FileInput(attrs={'class': 'form-control-file'}),
         }
