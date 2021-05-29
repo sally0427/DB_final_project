@@ -112,10 +112,11 @@ def upload_product_img(request):
     }
     return render(request, 'sally_api/image.html', context)
 
+
 @login_required(login_url='/uber_eat/login/')
 def upload_store_img(request):
     form = forms.UploadModelForm()
-    Storeinfo = models.Store.objects.get(Sid=request.GET['Pid'])
+    Storeinfo = models.Store.objects.get(Sid=request.GET['Sid'])
     if request.method == "POST":
         form = forms.UploadModelForm(request.POST, request.FILES)
         if form.is_valid():
@@ -125,7 +126,7 @@ def upload_store_img(request):
     context = {
         'form': form
     }
-    return render(request, 'sally_api/image.html', context)    
+    return render(request, 'sally_api/image.html', context)
 
 
 @login_required(login_url='/uber_eat/login/')
