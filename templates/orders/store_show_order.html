@@ -10,26 +10,65 @@
         }
     </style>
     <td align='center' valign="middle">
-    {% if order.Ostatus == 1 %}
-        <a href="/uber_store/store_get_order/?Oid={{ order.Oid }}">
+        {% if order.Ostatus == 1 %}
+            <a href="/uber_store/store_get_order/?Oid={{ order.Oid }}">
+                <button type="button" class="btn-clipboard btn btn-outline-info">
+                    接單
+                </button>
+            </a>
+        {% elif order.Ostatus == 2 %}
+            <a href="/uber_store/store_get_order/?Oid={{ order.Oid }}">
+                <button type="button" class="btn-clipboard btn btn-outline-info">
+                    已接單->準備完成
+                </button>
+            </a>
+        {% elif order.Ostatus == 3 %}
             <button type="button" class="btn-clipboard btn btn-outline-info">
-                接單
+                等待外送員領貨中...
             </button>
-        </a>
-    {% elif order.Ostatus == 2 %}
-        <a href="/uber_store/store_get_order/?Oid={{ order.Oid }}">
+        {% else %}
             <button type="button" class="btn-clipboard btn btn-outline-info">
-                已接單->準備完成
+                已出貨
             </button>
-        </a>
-    {% elif order.Ostatus == 3 %}
-        <button type="button" class="btn-clipboard btn btn-outline-info">
-            等待外送員領貨中...
-        </button>
-    {% else %}
-        <button type="button" class="btn-clipboard btn btn-outline-info">
-            已出貨
-        </button>
-    {% endif %}
+        {% endif %}
     </td>
+{% endblock %}
+{% block deliver_order %}
+    <style>
+        .btn-clipboard {
+            position: static;
+            padding: .25rem .5rem;
+            font-size: .80em;
+        }
+    </style>
+    <thead>
+    <tr>
+        <th scope="col">訂單者</th>
+        <th scope="col">訂單編號</th>
+        <th scope="col">物品數量</th>
+        <th scope="col">訂單總價</th>
+        <th scope="col">訂單創建時間</th>
+        <th scope="col">訂單狀態</th>
+        <th scope="col">店家名稱</th>
+        <th scope="col">已完成訂單</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for order in ordershistory %}
+        <tr>
+            <td align='center' valign="middle">{{ order.C.username }} </td>
+            <td align='center' valign="middle">{{ order.Oid }} </td>
+            <td align='center' valign="middle">{{ order.Ocount }} </td>
+            <td align='center' valign="middle">{{ order.Oprice }} </td>
+            <td align='center' valign="middle">{{ order.Ocreated }} </td>
+            <td align='center' valign="middle">消費者領取貨(結束訂單)</td>
+            <td align='center' valign="middle">{{ order.S.Sname }} </td>
+            <td align='center' valign="middle">
+                <button type="button" class="btn-clipboard btn btn-outline-info">
+                    已取貨（完成）
+                </button>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
 {% endblock %}

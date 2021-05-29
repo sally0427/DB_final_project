@@ -47,7 +47,6 @@
                             </div>
                         </div>
                     </div>
-
                 {% endfor %}
             </div>
         </div>
@@ -55,10 +54,12 @@
 {% endblock %}
 
 {% block submit %}
-
+    <br>
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
     <a href="" id='add_order'>
-        <button onclick="tests()">tests</button>
+        <button type="button" class="btn btn-lg btn-primary me-md-5" disabled onclick="tests()">送出訂單！</button>
     </a>
+    </div>
     <script src="https://code.jquery.com/jquery-1.11.2.js" type="text/javascript"></script>
     <script type="text/javascript" src={% static 'js/Quttons.js' %}></script>
     <script type="text/javascript" src={% static 'js/velocity.js' %}></script>

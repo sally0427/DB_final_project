@@ -1,5 +1,13 @@
 {% extends 'orders/order_base.html' %}
-
+{% block store_title %}
+    <section class="py-5 text-center container">
+        <div class="row py-lg-5">
+            <div class="col-lg-6 col-md-8 mx-auto">
+                <h2>訂單詳情</h2>
+            </div>
+        </div>
+    </section>
+{% endblock %}
 
 {% block show_product %}
     <section class="py-5 text-center container">
@@ -12,7 +20,8 @@
                 <th scope="col">訂單總價</th>
                 <th scope="col">訂單創建時間</th>
                 <th scope="col">訂單狀態</th>
-                <th scope="col">店家名稱</th> 
+                <th scope="col">店家名稱</th>
+                {% block edit_order %}{% endblock %}
             </tr>
             </thead>
             <tbody>
@@ -24,17 +33,17 @@
                     <td align='center' valign="middle">{{ order.Oprice }} </td>
                     <td align='center' valign="middle">{{ order.Ocreated }} </td>
                     {% if order.Ostatus == 1 %}
-                        <td align='center' valign="middle">創建訂單 </td>
-                    {%elif order.Ostatus == 2 %}
-                        <td align='center' valign="middle">店家已接單 </td>
-                    {%elif order.Ostatus == 3 %}
-                        <td align='center' valign="middle">店家出貨 </td>  
-                    {%elif order.Ostatus == 4 %}
-                        <td align='center' valign="middle">外送員領貨 </td>
-                    {%elif order.Ostatus == 5 %}
-                        <td align='center' valign="middle">外送員抵達 </td> 
-                    {%elif order.Ostatus == 6 %}
-                        <td align='center' valign="middle">消費者領取貨(結束訂單) </td>
+                        <td align='center' valign="middle">創建訂單</td>
+                    {% elif order.Ostatus == 2 %}
+                        <td align='center' valign="middle">店家已接單</td>
+                    {% elif order.Ostatus == 3 %}
+                        <td align='center' valign="middle">店家已準備完成</td>
+                    {% elif order.Ostatus == 4 %}
+                        <td align='center' valign="middle">外送員外送中</td>
+                    {% elif order.Ostatus == 5 %}
+                        <td align='center' valign="middle">外送員抵達</td>
+                    {% else %}
+                        <td align='center' valign="middle">消費者領取貨(結束訂單)</td>
                     {% endif %}
                     <td align='center' valign="middle">{{ order.S.Sname }} </td>
                     {% block get_order %}{% endblock %}
@@ -42,6 +51,30 @@
             {% endfor %}
             </tbody>
             {% block deliver_order %}
+                <thead>
+                <tr>
+                    <th scope="col">訂單者</th>
+                    <th scope="col">訂單編號</th>
+                    <th scope="col">物品數量</th>
+                    <th scope="col">訂單總價</th>
+                    <th scope="col">訂單創建時間</th>
+                    <th scope="col">已完成訂單</th>
+                    <th scope="col">店家名稱</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for order in ordershistory %}
+                    <tr>
+                        <td align='center' valign="middle">{{ order.C.username }} </td>
+                        <td align='center' valign="middle">{{ order.Oid }} </td>
+                        <td align='center' valign="middle">{{ order.Ocount }} </td>
+                        <td align='center' valign="middle">{{ order.Oprice }} </td>
+                        <td align='center' valign="middle">{{ order.Ocreated }} </td>
+                        <td align='center' valign="middle">消費者領取貨(結束訂單)</td>
+                        <td align='center' valign="middle">{{ order.S.Sname }} </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
             {% endblock %}
         </table>
     </section>

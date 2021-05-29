@@ -28,22 +28,11 @@ def user_show_order(request):
         username = request.user.username
         try:
             userinfo = User.objects.get(username=username)
-            orders = Order.objects.filter(C=userinfo).all().order_by('Oid')
+            orders = Order.objects.filter(C=userinfo, Ostatus__lt=6).all().order_by('Ocreated')
+            ordershistory = Order.objects.filter(C=userinfo, Ostatus=6).all().order_by('Ocreated')
         except:
             pass
         return render(request, 'orders/consumer_show_order.html', locals())
-
-
-def user_get_order(request):
-    try:
-        orderinfo = Order.objects.get(Oid=request.GET['Oid'])
-        if orderinfo.Ostatus == 3:
-            orderinfo.D = models.Deliver.objects.get(user=request.user)
-        orderinfo.Ostatus += 1
-        orderinfo.save()
-        return HttpResponseRedirect(reverse('show_deliver_order'))
-    except:
-        pass
 
 @login_required(login_url='/uber_eat/login/')
 def show_store_page(request):
