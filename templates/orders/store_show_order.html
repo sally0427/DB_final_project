@@ -1,4 +1,8 @@
 {% extends 'orders/consumer_show_order.html' %}
+{% block reflash %}
+<meta http-equiv="refresh" content="5">
+{% endblock %}
+
 {% block edit_order %}
     <th scope="col">接受訂單</th>{% endblock %}
 {% block get_order %}
@@ -34,6 +38,7 @@
     </td>
 {% endblock %}
 {% block deliver_order %}
+
     <style>
         .btn-clipboard {
             position: static;
