@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from uber_eat import views, store, product, order, deliver
+from uber_eat import views, store, product, order
 from uber_store.models import Photo
 from django.contrib.auth.models import User
 from django.conf import settings
@@ -34,10 +34,10 @@ urlpatterns = [
 
                   # ------------------------------------------------------
 
-                  path('del_store/', store.del_store, name='del_store'),
-                  path('del_store_post/', store.del_store_post, name='del_store_post'),
-                  path('del_deliver/', deliver.del_deliver, name='del_deliver'),
-                  path('del_deliver_post/', deliver.del_deliver_post, name='del_deliver_post'),
+                  # path('del_store/', store.del_store, name='del_store'),
+                  # path('del_store_post/', store.del_store_post, name='del_store_post'),
+                  # path('del_deliver/', deliver.del_deliver, name='del_deliver'),
+                  # path('del_deliver_post/', deliver.del_deliver_post, name='del_deliver_post'),
 
                   path('add_order/', order.add_order, name='add_order'),
                   path('add_order_post/', order.add_order_post, name='add_order_post'),
