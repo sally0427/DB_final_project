@@ -12,6 +12,7 @@ def add_order(request):
 
 def add_order_post(request):
     oid = random.randint(0,10000000)
+    Stransit_price = Store.objects.get(Sid = request.GET['S']).Stransit_price
     addOrder = Order(Oid = oid, C_id = request.GET['C'], S_id = request.GET['S']).save()
     Plist = request.GET.getlist('P')
     price = 0
@@ -23,6 +24,7 @@ def add_order_post(request):
         price = price + int(Product.objects.get(Pid = Pid).Pprice)*int(count)
         num = num + int(count)
         addOrdergoods = OrderGoods(OGid = random_num, O_id = oid, P_id = Pid, OGcount = count).save()
+    price = price + Stransit_price
     addOrder = Order.objects.filter(Oid = oid).update(Oprice = price, Ocount = num)
     return redirect('/')
 
