@@ -2,51 +2,62 @@
 {% block title %}<h4 class="mb-3">Sign_up</h4>{% endblock %}
 
 {% block Sign_form %}
-<form class="needs-validation" novalidate method="POST">
-    {% csrf_token %}
-  <div class="row g-3">
-    <div class="col-12">
-      <label for="username" class="form-label col-1.5">Username</label>
-        {{ form.username }}
-        <div class="invalid-feedback">
-          Your username is required.
+    <form class="needs-validation" novalidate method="POST">
+        {% csrf_token %}
+        <div class="row g-3">
+            <div class="row col-12">
+                <label for="username" class="form-label col-md-2 col-sm-6 col-xs-6">Username</label>
+                <div class="col-md-2 col-sm-6 col-xs-6">
+                    {{ form.username }}
+                    <div class="invalid-feedback">
+                        Your username is required.
+                    </div>
+                </div>
+            </div>
+
+            <div class="row col-12">
+                <label for="email" class="form-label col-md-2 col-sm-6 col-xs-6">email</label>
+                <div class="col-md-2 col-sm-6 col-xs-6">
+                    {{ form.email }}
+                    <div class="invalid-feedback">
+                        Please enter a valid email address.
+                    </div>
+                </div>
+            </div>
+
+            <div class="row col-12">
+                <label for="password" class="form-label col-md-2 col-sm-6 col-xs-6">Password 1</label>
+                <div class="col-md-2 col-sm-6 col-xs-6">
+                    {{ form.password1 }}
+                    <div class="invalid-feedback">
+                        密碼過於簡單，請更改輸入密碼！
+                    </div>
+                </div>
+            </div>
+
+            <div class="row col-12">
+                <label for="password" class="form-label col-md-2 col-sm-6 col-xs-6">Password 2</label>
+                <div class="col-md-2 col-sm-6 col-xs-6">
+                    {{ form.password2 }}
+                    <div class="invalid-feedback">
+                        請輸入相同密碼！
+                    </div>
+                </div>
+            </div>
+            <div class="row col-12">
+                <label for="phone" class="form-label col-md-2 col-sm-6 col-xs-6">phone</label>
+                <div class="col-md-2 col-sm-6 col-xs-6">
+                    {{ form.phone }}
+                </div>
+            </div>
+            <div class="row col-12">
+                <label for="phone" class="form-label col-md-2 col-sm-6 col-xs-6">address</label>
+                <div class="col-md-2 col-sm-6 col-xs-6">
+                    {{ form.address }}
+                </div>
+            </div>
         </div>
-    </div>
-
-    <div class="col-12">
-      <label for="email" class="form-label col-1.5">email</label>
-        {{ form.email }}
-      <div class="invalid-feedback">
-        Please enter a valid email address for shipping updates.
-      </div>
-    </div>
-
-    <div class="col-12">
-      <label for="password" class="form-label col-1.5">Password 1</label>
-      {{ form.password1 }}
-      <div class="invalid-feedback">
-        Please enter your shipping address.
-      </div>
-    </div>
-
-    <div class="col-12">
-      <label for="password" class="form-label col-1.5">Password 2</label>
-      {{ form.password2 }}
-    </div>
-    <div class="col-12">
-      <label for="phone" class="form-label col-1.5">phone</label>
-      {{ form.phone }}
-    </div>
-    <div class="col-12">
-      <label for="phone" class="form-label col-1.5">address</label>
-      {{ form.address }}
-    </div>
-{#            <div class="col-12">#}
-{#              <label for="phone" class="form-label col-2">Select your user type </label>#}
-{#              {{ form.type }}#}
-{#            </div>#}
-  </div>
-  <button class="w-100 btn btn-primary btn-lg" type="submit">Continue to checkout</button>
-</form>
+        <button class="w-100 btn btn-primary btn-lg" type="submit">Continue to checkout</button>
+    </form>
 
 {% endblock %}

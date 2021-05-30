@@ -6,18 +6,18 @@
     {% csrf_token %}
   <div class="row g-3">
     <div class="col-12">
-      <label for="username" class="form-label col-1.5">{{ form.Pname.label }}</label>
+      <label for="username" class="form-label col-md-1 col-sm-6 col-xs-6">{{ form.Pname.label }}</label>
         {{ form.Pname }}
         <div class="invalid-feedback">
-          Your username is required.
+          請輸入商品名稱！！
         </div>
     </div>
 
     <div class="col-12">
-      <label for="email" class="form-label col-1">{{ form.Pprice.label }}</label>
+      <label for="email" class="form-label col-md-1 col-sm-6 col-xs-6">{{ form.Pprice.label }}</label>
         {{ form.Pprice }}
       <div class="invalid-feedback">
-        Please enter a valid email address for shipping updates.
+        請輸入商品價錢！！
       </div>
     </div>
   </div>
