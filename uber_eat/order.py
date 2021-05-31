@@ -28,24 +28,6 @@ def add_order_post(request):
     addOrder = Order.objects.filter(Oid = oid).update(Oprice = price, Ocount = num)
     return redirect('/')
 
-
-@login_required(login_url='/uber_eat/login/')
-def user_show_order(request):
-    if request.user.is_authenticated:
-        username = request.user.username
-        try:
-            userinfo = User.objects.get(username=username)
-            order = Order(C=userinfo)
-            Oid = order.Oid
-            Ocount = order.Ocount
-            Oprice = order.Oprice
-            Ocreated = order.Ocreated
-            Cname = User.objects.get(id=order.C_id).username
-            return render(request, 'sally_api/../templates/orders/consumer_show_order.html', locals())
-        except:
-            pass
-        return render(request, 'sally_api/../templates/orders/consumer_show_order.html', locals())
-
 def mod_Ostatus_post(request):
     addOrder = Order.objects.filter(Oid = request.POST['O']).update(Ostatus = request.POST['Ostatus'])
     return HttpResponse('<p>mod_Ostatus_post</p>')

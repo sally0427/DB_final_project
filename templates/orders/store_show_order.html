@@ -13,7 +13,7 @@
             font-size: .80em;
         }
     </style>
-    <td align='center' valign="middle">
+    <td data-title='接受訂單' align='center' valign="middle">
         {% if order.Ostatus == 1 %}
             <a href="/uber_store/store_get_order/?Oid={{ order.Oid }}">
                 <button type="button" class="btn-clipboard btn btn-outline-info">
