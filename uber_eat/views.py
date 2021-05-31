@@ -149,9 +149,6 @@ def userinfo(request):
             pass
     return render(request, 'userinfo.html', locals())
 
-def add_order(request):
-    return render(request, "sally_api/add_order.html")
-
 def add_order_post(request):
     oid = random.randint(0,10000000)
     Stransit_price = Store.objects.get(Sid = request.GET['S']).Stransit_price
