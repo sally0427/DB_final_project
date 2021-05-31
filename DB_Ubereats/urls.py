@@ -32,10 +32,10 @@ urlpatterns = [
                   path('userinfo/', views.userinfo),
                   path('test/', views.test),
 
-                  path('add_order/', order.add_order, name='add_order'),
-                  path('add_order_post/', order.add_order_post, name='add_order_post'),
-                  path('mod_Ostatus_post/', order.mod_Ostatus_post, name='mod_Ostatus_post'),
-                  path('mod_Odeliver_post/', order.mod_Odeliver_post, name='mod_Odeliver_post'),
+                  path('add_order/', views.add_order, name='add_order'),
+                  path('add_order_post/', views.add_order_post, name='add_order_post'),
+                  path('mod_Ostatus_post/', views.mod_Ostatus_post, name='mod_Ostatus_post'),
+                  path('mod_Odeliver_post/', views.mod_Odeliver_post, name='mod_Odeliver_post'),
                   
 
               ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

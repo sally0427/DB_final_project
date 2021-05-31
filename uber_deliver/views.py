@@ -59,6 +59,6 @@ def deliver_get_order(request):
             orderinfo.D = models.Deliver.objects.get(user=request.user)
         orderinfo.Ostatus += 1
         orderinfo.save()
-        return HttpResponseRedirect(reverse('show_deliver_order'))
+        return HttpResponseRedirect(reverse('deliver_show_order'))
     except:
         pass
