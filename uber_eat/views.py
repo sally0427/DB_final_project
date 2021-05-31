@@ -157,12 +157,11 @@ def add_order_post(request):
     price = 0
     num = 0
     for item in Plist:
-        random_num = random.randint(0,10000000)
         Pid = item.split(',')[0]
         count = item.split(',')[1]
         price = price + int(Product.objects.get(Pid = Pid).Pprice)*int(count)
         num = num + int(count)
-        addOrdergoods = OrderGoods(OGid = random_num, O_id = oid, P_id = Pid, OGcount = count).save()
+        addOrdergoods = OrderGoods(O_id = oid, P_id = Pid, OGcount = count).save()
     price = price + Stransit_price
     addOrder = Order.objects.filter(Oid = oid).update(Oprice = price, Ocount = num)
     return redirect('/uber_eat/user_show_order')
