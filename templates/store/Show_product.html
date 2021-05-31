@@ -79,7 +79,7 @@
                 data[count] = 'P=' + "{{product.Pid}}," + countnum.value + '&';
                 count++;
             {% endfor %}
-            document.getElementById('add_order').href = '/add_order_post/?' + data.join('') + 'S='+{{ Storeinfo.Sid }}+
+            document.getElementById('add_order').href = '/uber_eat/add_order_post/?' + data.join('') + 'S='+{{ Storeinfo.Sid }}+
             '&C=' +{{ userinfo.id }};
             console.log(data.join(''));
         }
