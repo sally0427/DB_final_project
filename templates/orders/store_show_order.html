@@ -1,6 +1,6 @@
 {% extends 'orders/consumer_show_order.html' %}
 {% block reflash %}
-<meta http-equiv="refresh" content="5">
+    <meta http-equiv="refresh" content="5">
 {% endblock %}
 
 {% block edit_order %}
@@ -13,7 +13,7 @@
             font-size: .80em;
         }
     </style>
-    <td data-title='接受訂單' align='center' valign="middle">
+    <td data-title='接受訂單'>
         {% if order.Ostatus == 1 %}
             <a href="/uber_store/store_get_order/?Oid={{ order.Oid }}">
                 <button type="button" class="btn-clipboard btn btn-outline-info">
@@ -61,14 +61,14 @@
     <tbody>
     {% for order in ordershistory %}
         <tr>
-            <td align='center' valign="middle">{{ order.C.username }} </td>
-            <td align='center' valign="middle">{{ order.Oid }} </td>
-            <td align='center' valign="middle">{{ order.Ocount }} </td>
-            <td align='center' valign="middle">{{ order.Oprice }} </td>
-            <td align='center' valign="middle">{{ order.Ocreated }} </td>
-            <td align='center' valign="middle">消費者領取貨(結束訂單)</td>
-            <td align='center' valign="middle">{{ order.S.Sname }} </td>
-            <td align='center' valign="middle">
+            <td>{{ order.C.username }} </td>
+            <td>{{ order.Oid }} </td>
+            <td>{{ order.Ocount }} </td>
+            <td>{{ order.Oprice }} </td>
+            <td>{{ order.Ocreated }} </td>
+            <td>消費者領取貨(結束訂單)</td>
+            <td>{{ order.S.Sname }} </td>
+            <td>
                 <button type="button" class="btn-clipboard btn btn-outline-info">
                     已取貨（完成）
                 </button>
