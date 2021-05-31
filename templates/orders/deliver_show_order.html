@@ -49,7 +49,9 @@
     {% for order in deliverorders %}
         <tr>
             <td data-title='訂單者'>{{ order.C.username }} </td>
-            <td data-title='訂單編號'>{{ order.Oid }} </td>
+            <td data-title='訂單編號'><a href="/uber_eat/user_show_order_deteil/?Oid={{ order.Oid }}">
+                {{ order.Oid }}
+            </a>
             <td data-title='物品數量'>{{ order.Ocount }} </td>
             <td data-title='訂單總價'>{{ order.Oprice }} </td>
             <td data-title='訂單創建時間'>{{ order.Ocreated }} </td>

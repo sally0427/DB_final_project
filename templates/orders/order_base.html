@@ -4,8 +4,69 @@
 {% endblock %}
 
 {% block show_product %}
-
+    <div style="text-align:center;width:auto;height:auto;">
+        <div class="row">
+            <div class="col-md-4 col-sm-6 col-xs-12">
+                <h5>商店名稱：{{ order.S.Sname }}</h5>
+            </div>
+            <div class="col-md-8 col-sm-6 col-xs-12">
+                <h5>訂購者：{{ order.C.username }}</h5>
+            </div>
+            <div class="col-12">
+                訂單編號:{{ order.Oid }}
+                時間:{{ order.Ocreated }}
+            </div>
+            <div class="col-md-10" style="margin: 0 auto">
+                <div class="row">
+                    <div class='rg-container'>
+                        <table class="rg-table">
+                            <thead>
+                            <tr>
+                                <th>商品名稱</th>
+                                <th>商品數量</th>
+                                <th>商品單價</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for order in orderdeteil %}
+                                <tr>
+                                    <td data-title='商品名稱'>{{ order.P.Pname }} </td>
+                                    <td data-title='商品數量'>{{ order.OGcount }} </td>
+                                    <td data-title='商品單價'>{{ order.P.Pprice }} </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                        <table class="rg-table">
+                            <tbody>
+                            <tr>
+                                <th class="col-md-8">訂單狀態</th>
+                                <td class="col-md-4">
+                                    {% if order.Ostatus == 1 %}
+                                        創建訂單
+                                    {% elif order.Ostatus == 2 %}
+                                        店家已接單
+                                    {% elif order.Ostatus == 3 %}
+                                        店家已準備完成
+                                    {% elif order.Ostatus == 4 %}
+                                        外送員外送中
+                                    {% elif order.Ostatus == 5 %}
+                                        外送員抵達
+                                    {% else %}
+                                        消費者領取貨(結束訂單)
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="col-md-8">訂單總價</th>
+                                <td class="col-md-4">{{ order.Oprice }} </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
 
-{% block deliver_order %}
-{% endblock %}
