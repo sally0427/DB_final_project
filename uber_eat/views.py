@@ -130,11 +130,6 @@ class SingUpView(CreateView):
     success_url = reverse_lazy('login')
     template_name = 'registration/user_registration.html'
 
-
-def joinStore(request):
-    return render(request, 'store/storeRegistration.html')
-
-
 @login_required(login_url='/uber_eat/login/')
 def userinfo(request):
     if request.user.is_authenticated:

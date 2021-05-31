@@ -7,7 +7,7 @@ from uber_deliver import forms
 from django.contrib.auth.models import User
 from uber_deliver import models
 from django.contrib.auth.decorators import login_required
-from uber_eat.models import Order, OrderGoods
+from uber_eat.models import Order
 
 
 # Create your views here.
