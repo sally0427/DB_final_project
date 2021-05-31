@@ -1,6 +1,5 @@
 # Create your models here.
 from django.db import models
-from django.utils import timezone
 from django.contrib.auth.models import User
 from uber_store.models import Store, Product
 from uber_deliver.models import Deliver
