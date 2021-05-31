@@ -24,5 +24,4 @@ urlpatterns = [
     path('upload_store_img/', views.upload_store_img, name='upload_store_img'),
     path('store_show_order/', views.store_show_order, name='store_show_order'),
     path('store_get_order/', views.store_get_order, name='store_get_order'),
-    # path('backCheck', views.SignupBack, name='backCheck'),
 ]
