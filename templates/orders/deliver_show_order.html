@@ -9,7 +9,7 @@
             font-size: .80em;
         }
     </style>
-    <td data-title='接受訂單' align='center' valign="middle">
+    <td data-title='接受訂單'>
         {% if order.Ostatus == 2 %}
             <button type="button" class="btn-clipboard btn btn-outline-info">
                 商店準備中
@@ -48,12 +48,12 @@
     <tbody>
     {% for order in deliverorders %}
         <tr>
-            <td data-title='訂單者' align='center' valign="middle">{{ order.C.username }} </td>
-            <td data-title='訂單編號' align='center' valign="middle">{{ order.Oid }} </td>
-            <td data-title='物品數量' align='center' valign="middle">{{ order.Ocount }} </td>
-            <td data-title='訂單總價' align='center' valign="middle">{{ order.Oprice }} </td>
-            <td data-title='訂單創建時間' align='center' valign="middle">{{ order.Ocreated }} </td>
-            <td data-title='訂單狀態' align='center' valign="middle">
+            <td data-title='訂單者'>{{ order.C.username }} </td>
+            <td data-title='訂單編號'>{{ order.Oid }} </td>
+            <td data-title='物品數量'>{{ order.Ocount }} </td>
+            <td data-title='訂單總價'>{{ order.Oprice }} </td>
+            <td data-title='訂單創建時間'>{{ order.Ocreated }} </td>
+            <td data-title='訂單狀態'>
                 {% if order.Ostatus == 1 %}
                     創建訂單
                 {% elif order.Ostatus == 2 %}
@@ -68,9 +68,9 @@
                     消費者領取貨(結束訂單)
                 {% endif %}
             </td>
-            <td data-title='店家名稱' align='center' valign="middle">{{ order.S.Sname }} </td>
+            <td data-title='店家名稱'>{{ order.S.Sname }} </td>
 
-            <td data-title='已接訂單' align='center' valign="middle">
+            <td data-title='已接訂單'>
                 {% if order.Ostatus == 2 %}
                     <button type="button" class="btn-clipboard btn btn-outline-info">
                         商店準備中

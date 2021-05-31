@@ -26,7 +26,7 @@ def add_order_post(request):
         addOrdergoods = OrderGoods(OGid = random_num, O_id = oid, P_id = Pid, OGcount = count).save()
     price = price + Stransit_price
     addOrder = Order.objects.filter(Oid = oid).update(Oprice = price, Ocount = num)
-    return redirect('/')
+    return redirect('/user_show_order')
 
 
 @login_required(login_url='/uber_eat/login/')
