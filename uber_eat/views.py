@@ -160,7 +160,7 @@ def add_order_post(request):
         addOrdergoods = OrderGoods(OGid = random_num, O_id = oid, P_id = Pid, OGcount = count).save()
     price = price + Stransit_price
     addOrder = Order.objects.filter(Oid = oid).update(Oprice = price, Ocount = num)
-    return redirect('/user_show_order')
+    return redirect('/uber_eat/user_show_order')
 
 def mod_Ostatus_post(request):
     addOrder = Order.objects.filter(Oid = request.POST['O']).update(Ostatus = request.POST['Ostatus'])
