@@ -62,7 +62,9 @@
     {% for order in ordershistory %}
         <tr>
             <td>{{ order.C.username }} </td>
-            <td>{{ order.Oid }} </td>
+            <td data-title='訂單編號'><a href="/uber_eat/user_show_order_deteil/?Oid={{ order.Oid }}">
+                {{ order.Oid }}
+            </a>
             <td>{{ order.Ocount }} </td>
             <td>{{ order.Oprice }} </td>
             <td>{{ order.Ocreated }} </td>

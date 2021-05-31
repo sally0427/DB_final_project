@@ -38,6 +38,19 @@ def user_show_order(request):
             pass
         return render(request, 'orders/consumer_show_order.html', locals())
 
+
+@login_required(login_url='/uber_eat/login/')
+def user_show_order_deteil(request):
+    if request.user.is_authenticated:
+        username = request.user.username
+        try:
+            userinfo = User.objects.get(username=username)
+            order = Order.objects.get(Oid=request.GET['Oid'])
+            orderdeteil = OrderGoods.objects.filter(O=order).all().order_by('P_id')
+        except:
+            pass
+        return render(request, 'orders/order_base.html', locals())
+
 @login_required(login_url='/uber_eat/login/')
 def show_store_page(request):
     if request.user.is_authenticated:

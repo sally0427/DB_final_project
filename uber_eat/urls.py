@@ -27,4 +27,5 @@ urlpatterns = [
     path('add_order_post/', views.add_order_post, name='add_order_post'),
     path('mod_Ostatus_post/', views.mod_Ostatus_post, name='mod_Ostatus_post'),
     path('mod_Odeliver_post/', views.mod_Odeliver_post, name='mod_Odeliver_post'),
+    path('user_show_order_deteil/', views.user_show_order_deteil, name='user_show_order_deteil')
 ]
