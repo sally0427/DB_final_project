@@ -16,8 +16,6 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from uber_eat import views
-from uber_store.models import Photo
-from django.contrib.auth.models import User
 from django.conf import settings
 from django.conf.urls.static import static
 

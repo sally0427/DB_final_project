@@ -4,21 +4,17 @@ from django.contrib.auth import authenticate
 from django.contrib import auth
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from django.contrib.sessions.models import Session
 from django.shortcuts import render
-from django.urls import reverse_lazy, reverse
+from django.urls import reverse_lazy
 from django.views.generic import CreateView
 from django.contrib import messages
 from uber_eat import forms
 from uber_eat.forms import SignUpForm
-# Create your views here.
 from uber_deliver.models import Deliver
 from uber_eat.models import *
-# from uber_eat.product import show_product
 from uber_store.models import Store, Product
 from django.contrib import auth
 from django.shortcuts import redirect
-# from uber_eat.store import show_store
 import random
 from django.http import HttpResponse
 
@@ -147,11 +143,6 @@ class SingUpView(CreateView):
     success_url = reverse_lazy('login')
     template_name = 'registration/user_registration.html'
 
-
-def joinStore(request):
-    return render(request, 'store/storeRegistration.html')
-
-
 @login_required(login_url='/uber_eat/login/')
 def userinfo(request):
     if request.user.is_authenticated:
@@ -170,12 +161,11 @@ def add_order_post(request):
     price = 0
     num = 0
     for item in Plist:
-        random_num = random.randint(0,10000000)
         Pid = item.split(',')[0]
         count = item.split(',')[1]
         price = price + int(Product.objects.get(Pid = Pid).Pprice)*int(count)
         num = num + int(count)
-        addOrdergoods = OrderGoods(OGid = random_num, O_id = oid, P_id = Pid, OGcount = count).save()
+        addOrdergoods = OrderGoods(O_id = oid, P_id = Pid, OGcount = count).save()
     price = price + Stransit_price
     addOrder = Order.objects.filter(Oid = oid).update(Oprice = price, Ocount = num)
     return redirect('/uber_eat/user_show_order')
