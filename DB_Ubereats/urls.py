@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from uber_eat import views, store, product, order
+from uber_eat import views
 from uber_store.models import Photo
 from django.contrib.auth.models import User
 from django.conf import settings
@@ -31,11 +31,5 @@ urlpatterns = [
                   path('', views.home, name='home'),
                   path('userinfo/', views.userinfo),
                   path('test/', views.test),
-
-
-                  path('mod_Ostatus_post/', views.mod_Ostatus_post, name='mod_Ostatus_post'),
-                  path('mod_Odeliver_post/', views.mod_Odeliver_post, name='mod_Odeliver_post'),
-                  
-
               ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

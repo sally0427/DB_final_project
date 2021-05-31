@@ -24,7 +24,7 @@ urlpatterns = [
     path('logout/', views.logout, name='logout'),
     path('store/', views.show_store_page, name='show_store_page'),
     path('user_show_order/', views.user_show_order, name='user_show_order'),
-    path('add_order/', views.add_order, name='add_order'),
     path('add_order_post/', views.add_order_post, name='add_order_post'),
-
+    path('mod_Ostatus_post/', views.mod_Ostatus_post, name='mod_Ostatus_post'),
+    path('mod_Odeliver_post/', views.mod_Odeliver_post, name='mod_Odeliver_post'),
 ]

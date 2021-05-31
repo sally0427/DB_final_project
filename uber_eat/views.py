@@ -14,13 +14,21 @@ from uber_eat.forms import SignUpForm
 # Create your views here.
 from uber_deliver.models import Deliver
 from uber_eat.models import *
-from uber_eat.product import show_product
+# from uber_eat.product import show_product
 from uber_store.models import Store, Product
 from django.contrib import auth
 from django.shortcuts import redirect
-from uber_eat.store import show_store
+# from uber_eat.store import show_store
 import random
 from django.http import HttpResponse
+
+def show_product(Sid):
+    ProductList = Product.objects.filter(S_id=Sid).order_by('Pid')
+    return ProductList
+
+def show_store(request):
+    StoreList = Store.objects.filter().all().order_by('Sid')
+    return StoreList
 
 @login_required(login_url='/uber_eat/login/')
 def user_show_order(request):
@@ -140,9 +148,6 @@ def userinfo(request):
         except:
             pass
     return render(request, 'userinfo.html', locals())
-
-def add_order(request):
-    return render(request, "sally_api/add_order.html")
 
 def add_order_post(request):
     oid = random.randint(0,10000000)
