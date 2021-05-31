@@ -8,7 +8,7 @@ from django.urls import reverse
 from uber_eat.models import Order, OrderGoods
 from uber_store import forms, models
 from django.contrib.auth.models import User
-from uber_eat.product import show_product
+from uber_eat.views import show_product
 from django.contrib.auth.decorators import login_required
 import os
 
