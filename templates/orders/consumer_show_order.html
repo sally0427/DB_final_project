@@ -10,8 +10,196 @@
 {% endblock %}
 
 {% block show_product %}
-    <section class="py-5 text-center container">
-        <table class="table">
+    <style>
+        /* info (hed, dek, source, credit) */
+        .rg-container {
+            font-family: 'Lato', Helvetica, Arial, sans-serif;
+            font-size: 16px;
+            line-height: 1.4;
+            margin: 0;
+            padding: 1em 0.5em;
+            color: #222;
+        }
+
+        .rg-header {
+            margin-bottom: 1em;
+            text-align: left;
+        }
+
+        .rg-header > * {
+            display: block;
+        }
+
+        .rg-hed {
+            font-weight: bold;
+            font-size: 1.4em;
+        }
+
+        .rg-dek {
+            font-size: 1em;
+        }
+
+        .rg-source {
+            margin: 0;
+            font-size: 0.75em;
+            text-align: right;
+        }
+
+        .rg-source .pre-colon {
+            text-transform: uppercase;
+        }
+
+        .rg-source .post-colon {
+            font-weight: bold;
+        }
+
+        /* table */
+        table.rg-table {
+            width: 100%;
+            margin-bottom: 0.5em;
+            font-size: 1em;
+            border-collapse: collapse;
+            border-spacing: 0;
+        }
+
+        table.rg-table tr {
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            border: 0;
+            font-size: 100%;
+            font: inherit;
+            vertical-align: baseline;
+            text-align: left;
+            color: #333;
+        }
+
+        table.rg-table thead {
+            border-bottom: 3px solid #ddd;
+        }
+
+        table.rg-table tr {
+            border-bottom: 1px solid #ddd;
+            color: #222;
+        }
+
+        table.rg-table tr.highlight {
+            background-color: #dcf1f0 !important;
+        }
+
+        table.rg-table.zebra tr:nth-child(even) {
+            background-color: #f6f6f6;
+        }
+
+        table.rg-table th {
+            font-weight: bold;
+            padding: 0.35em;
+            font-size: 0.9em;
+        }
+
+        table.rg-table td {
+            padding: 0.35em;
+            font-size: 0.9em;
+        }
+
+        table.rg-table .highlight td {
+            font-weight: bold;
+        }
+
+        table.rg-table th.number,
+        td.number {
+            text-align: right;
+        }
+
+        /* media queries */
+        @media screen and (max-width: 600px) {
+            .rg-container {
+                max-width: 600px;
+                margin: 0 auto;
+            }
+
+            table.rg-table {
+                width: 100%;
+            }
+
+            table.rg-table tr.hide-mobile,
+            table.rg-table th.hide-mobile,
+            table.rg-table td.hide-mobile {
+                display: none;
+            }
+
+            table.rg-table thead {
+                display: none;
+            }
+
+            table.rg-table tbody {
+                width: 100%;
+            }
+
+            table.rg-table tr,
+            table.rg-table th,
+            table.rg-table td {
+                display: block;
+                padding: 0;
+            }
+
+            table.rg-table tr {
+                border-bottom: none;
+                margin: 0 0 1em 0;
+                padding: 0.5em;
+            }
+
+            table.rg-table tr.highlight {
+                background-color: inherit !important;
+            }
+
+            table.rg-table.zebra tr:nth-child(even) {
+                background-color: transparent;
+            }
+
+            table.rg-table.zebra td:nth-child(even) {
+                background-color: #f6f6f6;
+            }
+
+            table.rg-table tr:nth-child(even) {
+                background-color: transparent;
+            }
+
+            table.rg-table td {
+                padding: 0.5em 0 0.25em 0;
+                border-bottom: 1px dotted #ccc;
+                text-align: right;
+            }
+
+            table.rg-table td[data-title]:before {
+                content: attr(data-title);
+                font-weight: bold;
+                display: inline-block;
+                content: attr(data-title);
+                float: left;
+                margin-right: 0.5em;
+                font-size: 0.95em;
+            }
+
+            table.rg-table td:last-child {
+                padding-right: 0;
+                border-bottom: 2px solid #ccc;
+            }
+
+            table.rg-table td:empty {
+                display: none;
+            }
+
+            table.rg-table .highlight td {
+                background-color: inherit;
+                font-weight: normal;
+            }
+        }
+
+    </style>
+    <div class='rg-container'>
+        <table class="rg-table">
             <thead>
             <tr>
                 <th scope="col">訂單者</th>
@@ -27,25 +215,27 @@
             <tbody>
             {% for order in orders %}
                 <tr>
-                    <td align='center' valign="middle">{{ order.C.username }} </td>
-                    <td align='center' valign="middle">{{ order.Oid }} </td>
-                    <td align='center' valign="middle">{{ order.Ocount }} </td>
-                    <td align='center' valign="middle">{{ order.Oprice }} </td>
-                    <td align='center' valign="middle">{{ order.Ocreated }} </td>
+                    <td data-title='訂單者' align='center' valign="middle">{{ order.C.username }} </td>
+                    <td data-title='訂單編號' align='center' valign="middle">{{ order.Oid }} </td>
+                    <td data-title='物品數量' align='center' valign="middle">{{ order.Ocount }} </td>
+                    <td data-title='訂單總價' align='center' valign="middle">{{ order.Oprice }} </td>
+                    <td data-title='訂單創建時間' align='center' valign="middle">{{ order.Ocreated }} </td>
+                    <td data-title='訂單狀態' align='center' valign="middle">
                     {% if order.Ostatus == 1 %}
-                        <td align='center' valign="middle">創建訂單</td>
+                        創建訂單
                     {% elif order.Ostatus == 2 %}
-                        <td align='center' valign="middle">店家已接單</td>
+                        店家已接單
                     {% elif order.Ostatus == 3 %}
-                        <td align='center' valign="middle">店家已準備完成</td>
+                        店家已準備完成
                     {% elif order.Ostatus == 4 %}
-                        <td align='center' valign="middle">外送員外送中</td>
+                        外送員外送中
                     {% elif order.Ostatus == 5 %}
-                        <td align='center' valign="middle">外送員抵達</td>
+                        外送員抵達
                     {% else %}
-                        <td align='center' valign="middle">消費者領取貨(結束訂單)</td>
+                        消費者領取貨(結束訂單)
                     {% endif %}
-                    <td align='center' valign="middle">{{ order.S.Sname }} </td>
+                    </td>
+                    <td data-title='店家名稱' align='center' valign="middle">{{ order.S.Sname }} </td>
                     {% block get_order %}{% endblock %}
                 </tr>
             {% endfor %}
@@ -65,17 +255,17 @@
                 <tbody>
                 {% for order in ordershistory %}
                     <tr>
-                        <td align='center' valign="middle">{{ order.C.username }} </td>
-                        <td align='center' valign="middle">{{ order.Oid }} </td>
-                        <td align='center' valign="middle">{{ order.Ocount }} </td>
-                        <td align='center' valign="middle">{{ order.Oprice }} </td>
-                        <td align='center' valign="middle">{{ order.Ocreated }} </td>
-                        <td align='center' valign="middle">消費者領取貨(結束訂單)</td>
-                        <td align='center' valign="middle">{{ order.S.Sname }} </td>
+                        <td data-title='訂單者' align='center' valign="middle">{{ order.C.username }} </td>
+                        <td data-title='訂單編號' align='center' valign="middle">{{ order.Oid }} </td>
+                        <td data-title='物品數量' align='center' valign="middle">{{ order.Ocount }} </td>
+                        <td data-title='訂單總價' align='center' valign="middle">{{ order.Oprice }} </td>
+                        <td data-title='訂單創建時間' align='center' valign="middle">{{ order.Ocreated }} </td>
+                        <td data-title='已完成訂單' align='center' valign="middle">消費者領取貨(結束訂單)</td>
+                        <td data-title='店家名稱' align='center' valign="middle">{{ order.S.Sname }} </td>
                     </tr>
                 {% endfor %}
                 </tbody>
             {% endblock %}
         </table>
-    </section>
+    </div>
 {% endblock %}
