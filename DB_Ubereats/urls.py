@@ -32,19 +32,11 @@ urlpatterns = [
                   path('userinfo/', views.userinfo),
                   path('test/', views.test),
 
-                  # ------------------------------------------------------
-
-                  # path('del_store/', store.del_store, name='del_store'),
-                  # path('del_store_post/', store.del_store_post, name='del_store_post'),
-                  # path('del_deliver/', deliver.del_deliver, name='del_deliver'),
-                  # path('del_deliver_post/', deliver.del_deliver_post, name='del_deliver_post'),
-
                   path('add_order/', order.add_order, name='add_order'),
                   path('add_order_post/', order.add_order_post, name='add_order_post'),
                   path('mod_Ostatus_post/', order.mod_Ostatus_post, name='mod_Ostatus_post'),
                   path('mod_Odeliver_post/', order.mod_Odeliver_post, name='mod_Odeliver_post'),
                   path('user_show_order/', views.user_show_order, name='user_show_order'),
-                  path('deliver_show_order/', order.deliver_show_order, name='deliver_show_order'),
 
               ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

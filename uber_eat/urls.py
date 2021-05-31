@@ -24,6 +24,4 @@ urlpatterns = [
     path('logout/', views.logout, name='logout'),
     path('store/', views.show_store_page, name='show_store_page'),
 
-    # path('login/', views.login, name='login')
-    # path('backCheck', views.SignupBack, name='backCheck'),
 ]

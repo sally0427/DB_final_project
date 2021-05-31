@@ -20,5 +20,4 @@ urlpatterns = [
     path('joinDeliver/', views.add_deliver_post, name='home'),
     path('show_deliver_order/', views.show_deliver_order, name='show_deliver_order'),
     path('deliver_get_order/', views.deliver_get_order, name='deliver_get_order'),
-    # path('backCheck', views.SignupBack, name='backCheck'),
 ]
