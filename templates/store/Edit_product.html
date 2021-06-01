@@ -5,20 +5,21 @@
             <!-- Three columns of text below the carousel -->
             <div class="col-lg-6 col-md-8 mx-auto">
                 <!-- Three columns of text below the carousel -->
-                <div class="center" >
+                <div class="center">
                     <a href="/uber_store/upload_store_img/?Sid={{ Storeinfo.Sid }}">
-                    {% if Storeinfo.image %}
-                        <img class="bd-placeholder-img rounded-circle" src="{{ Storeinfo.image.url }}" width="140"
-                             height="140" role="img">
-                    {% else %}
-                        <svg class="bd-placeholder-img rounded-circle" src="static/index_blade.jpg" width="140"
-                             height="140" xmlns="http://www.w3.org/2000/svg" role="img"
-                             aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false">
-                            <title>Placeholder</title>
-                            <rect width="100%" height="100%" fill="#777"/>
-                            <text x="50%" y="50%" fill="#777" dy=".3em">140x140</text>
-                        </svg>
-                    {% endif %}
+                        {% if Storeinfo.image %}
+                            <img class="bd-placeholder-img rounded-circle" src="{{ Storeinfo.image.url }}" width="140"
+                                 height="140" role="img">
+                        {% else %}
+                            <svg class="bd-placeholder-img rounded-circle" src="static/index_blade.jpg" width="140"
+                                 height="140" xmlns="http://www.w3.org/2000/svg" role="img"
+                                 aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice"
+                                 focusable="false">
+                                <title>Placeholder</title>
+                                <rect width="100%" height="100%" fill="#777"/>
+                                <text x="50%" y="50%" fill="#777" dy=".3em">140x140</text>
+                            </svg>
+                        {% endif %}
                     </a>
                 </div><!-- /.row -->
                 <h1 class="fw-light">
@@ -48,16 +49,17 @@
                     <div class="col">
                         <div class="card shadow-sm">
                             <div class="bd-placeholder-img card-img-top" width="100%" height="225"
-                                 style="width: 100%; height: 225px; position: relative;"
+                                 style="width: 100%; height: 225px; position: relative; text-align:center;"
                                  aria-label="Placeholder: Thumbnail">
-                            <a href="/uber_store/upload_product_img/?Pid={{ product.Pid }}">
-                                <img
-                                        {% if product.image %}
-                                            src="{{ product.image.url }}"
-                                        {% endif %}
-                                            style="max-width: 100%; max-height: 100%; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);"
-                                >
-                            </a>
+                                <a href="/uber_store/upload_product_img/?Pid={{ product.Pid }}">
+                                    {% if product.image %}
+                                        <img src="{{ product.image.url }}"
+                                             style="max-width: 100%; max-height: 100%; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+                                    {% else %}
+                                        <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">UploadImage</text></svg>
+                                    {% endif %}
+
+                                </a>
                             </div>
                             <title>Placeholder</title>
                             <rect width="100%" height="100%" fill="#55595c"/>
@@ -71,7 +73,8 @@
                                             <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
                                         </a>
                                         <a href="/uber_store/del_product/?Pid={{ product.Pid }}">
-                                            <button type="button" class="btn btn-sm btn-outline-secondary">Delete</button>
+                                            <button type="button" class="btn btn-sm btn-outline-secondary">Delete
+                                            </button>
                                         </a>
                                     </div>
                                     <small class="text-muted">{{ product.Pprice }} 元</small>
