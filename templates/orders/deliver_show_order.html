@@ -1,4 +1,8 @@
 {% extends 'orders/consumer_show_order.html' %}
+{% block table1 %}<span style="font-size: medium">外送中</span>{% endblock %}
+{% block table2 %}<span style="font-size: medium">可接訂單</span>{% endblock %}
+{% block table3 %}<span style="font-size: medium">已完成訂單</span>{% endblock %}
+
 {% block edit_order %}
     <th scope="col">可接訂單</th>{% endblock %}
 {% block get_order %}
@@ -114,7 +118,7 @@
             font-size: .80em;
         }
     </style>
-    <thead>
+    <thead id="table3">
     <tr>
         <th scope="col">訂單者</th>
         <th scope="col">訂單編號</th>
