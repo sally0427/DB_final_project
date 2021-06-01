@@ -46,7 +46,8 @@ def show_deliver_order(request):
             userinfo = User.objects.get(username=username)
             DeliverInfo = models.Deliver.objects.get(user=userinfo)
             orders = (Order.objects.filter(D=None, Ostatus=3) | Order.objects.filter(D=None, Ostatus=2)).all().order_by('Ocreated')
-            deliverorders = Order.objects.filter(D=DeliverInfo).all().order_by('Ocreated')
+            deliverorders = Order.objects.filter(D=DeliverInfo, Ostatus=6).all().order_by('Ocreated')
+            deliverorders_ing = Order.objects.filter(D=DeliverInfo, Ostatus__lt=6).all().order_by('Ocreated')
         except:
             pass
         return render(request, 'orders/deliver_show_order.html', locals())

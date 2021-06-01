@@ -1,6 +1,6 @@
 {% extends 'orders/consumer_show_order.html' %}
 {% block edit_order %}
-    <th scope="col">接受訂單</th>{% endblock %}
+    <th scope="col">可接訂單</th>{% endblock %}
 {% block get_order %}
     <style>
         .btn-clipboard {
@@ -9,7 +9,7 @@
             font-size: .80em;
         }
     </style>
-    <td data-title='接受訂單'>
+    <td data-title='可接訂單'>
         {% if order.Ostatus == 2 %}
             <button type="button" class="btn-clipboard btn btn-outline-info">
                 商店準備中
@@ -25,6 +25,87 @@
 {% endblock %}
 
 
+{% block deliver_order_ing %}
+    <style>
+        .btn-clipboard {
+            position: static;
+            padding: .25rem .5rem;
+            font-size: .80em;
+        }
+    </style>
+    <thead>
+    <tr>
+        <th scope="col">訂單者</th>
+        <th scope="col">訂單編號</th>
+        <th scope="col">物品數量</th>
+        <th scope="col">訂單總價</th>
+        <th scope="col">訂單創建時間</th>
+        <th scope="col">訂單狀態</th>
+        <th scope="col">店家名稱</th>
+        <th scope="col">外送中</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for order in deliverorders_ing %}
+        <tr>
+            <td data-title='訂單者'>{{ order.C.username }} </td>
+            <td data-title='訂單編號'><a href="/uber_eat/user_show_order_deteil/?Oid={{ order.Oid }}">
+                {{ order.Oid }}
+            </a>
+            <td data-title='物品數量'>{{ order.Ocount }} </td>
+            <td data-title='訂單總價'>{{ order.Oprice }} </td>
+            <td data-title='訂單創建時間'>{{ order.Ocreated }} </td>
+            <td data-title='訂單狀態'>
+                {% if order.Ostatus == 1 %}
+                    創建訂單
+                {% elif order.Ostatus == 2 %}
+                    店家已接單
+                {% elif order.Ostatus == 3 %}
+                    店家出貨
+                {% elif order.Ostatus == 4 %}
+                    外送員領貨
+                {% elif order.Ostatus == 5 %}
+                    外送員抵達
+                {% else %}
+                    消費者領取貨(結束訂單)
+                {% endif %}
+            </td>
+            <td data-title='店家名稱'>{{ order.S.Sname }} </td>
+
+            <td data-title='外送中'>
+                {% if order.Ostatus == 2 %}
+                    <button type="button" class="btn-clipboard btn btn-outline-info">
+                        商店準備中
+                    </button>
+                {% elif order.Ostatus == 3 %}
+                    <a href="/uber_deliver/deliver_get_order/?Oid={{ order.Oid }}">
+                        <button type="button" class="btn-clipboard btn btn-outline-info">
+                            可接單(餐點準備完成)
+                        </button>
+                    </a>
+                {% elif order.Ostatus == 4 %}
+                    <a href="/uber_deliver/deliver_get_order/?Oid={{ order.Oid }}">
+                        <button type="button" class="btn-clipboard btn btn-outline-info">
+                            已接單->外送中
+                        </button>
+                    </a>
+                {% elif order.Ostatus == 5 %}
+                    <a href="/uber_deliver/deliver_get_order/?Oid={{ order.Oid }}">
+                        <button type="button" class="btn-clipboard btn btn-outline-info">
+                            已抵達(取貨完成請點擊)
+                        </button>
+                    </a>
+
+                {% else %}
+                    <button type="button" class="btn-clipboard btn btn-outline-info">
+                        已取貨（完成）
+                    </button>
+                {% endif %}
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+{% endblock %}
 {% block deliver_order %}
     <style>
         .btn-clipboard {
@@ -42,7 +123,7 @@
         <th scope="col">訂單創建時間</th>
         <th scope="col">訂單狀態</th>
         <th scope="col">店家名稱</th>
-        <th scope="col">已接訂單</th>
+        <th scope="col">完成訂單</th>
     </tr>
     </thead>
     <tbody>
@@ -72,7 +153,7 @@
             </td>
             <td data-title='店家名稱'>{{ order.S.Sname }} </td>
 
-            <td data-title='已接訂單'>
+            <td data-title='完成訂單'>
                 {% if order.Ostatus == 2 %}
                     <button type="button" class="btn-clipboard btn btn-outline-info">
                         商店準備中

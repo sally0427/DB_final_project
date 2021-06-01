@@ -19,6 +19,8 @@ from uber_store import views
 urlpatterns = [
     path('', views.store_page, name='store_page'),
     path('add_product', views.add_product, name='add_product'),
+    path('edit_product/', views.edit_product, name='edit_product'),
+    path('del_product/', views.del_product, name='del_product'),
     path('joinStore/', views.add_store_post, name='home'),
     path('upload_product_img/', views.upload_product_img, name='upload_product_img'),
     path('upload_store_img/', views.upload_store_img, name='upload_store_img'),
