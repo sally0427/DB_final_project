@@ -35,6 +35,32 @@ def add_product(request):
     return render(request, 'registration/add_product.html', locals())
 
 
+@login_required(login_url='/uber_eat/login/')
+def edit_product(request):
+    if request.user.is_authenticated:
+        username = request.user.username
+        user = User.objects.get(username=username)
+        Pid = request.GET['Pid']
+        try:
+            Storeinfo = models.Store.objects.get(user=user)
+            product = models.Product.objects.get(S=Storeinfo, Pid=Pid)
+            if request.method == 'POST':
+                form = forms.addProductForm(request.POST)
+                if form.is_valid():
+                    product.Pname = request.POST['Pname'].strip()
+                    product.Pprice = request.POST['Pprice']
+                    product.save()
+                    return redirect('/uber_store')
+                else:
+                    messages.add_message(request, messages.INFO, '請檢查輸入的欄位內容')
+            else:
+                form = forms.addProductForm()
+        except:
+            messages.add_message(request, messages.INFO, '頁面錯誤')
+            return redirect('/')
+    return render(request, 'registration/add_product.html', locals())
+
+
 def show_product_img(ProductList):
     from django.db.models import Q
     q1 = Q()
@@ -56,11 +82,18 @@ def store_page(request):
                 Sname = Storeinfo.Sname
                 ProductList = show_product(Storeinfo.Sid)
                 PhotoList = show_product_img(ProductList)
-            if request.method == 'GET':
-                models.Product.objects.filter(Pid=request.GET['Pid']).delete()
         except:
             pass
     return render(request, 'store/Edit_product.html', locals())
+
+
+def del_product(request):
+    try:
+        if request.method == 'GET':
+            models.Product.objects.filter(Pid=request.GET['Pid']).delete()
+    except:
+        pass
+    return HttpResponseRedirect(reverse('store_page'))
 
 
 def home(request):

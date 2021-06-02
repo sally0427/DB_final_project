@@ -11,8 +11,11 @@
 
 {% block show_product %}
     <div class='rg-container'>
+        <br id="table1">
         <table class="rg-table">
-            <thead>
+            {% block deliver_order_ing %}
+            {% endblock %}
+            <thead id="table2">
             <tr>
                 <th>訂單者</th>
                 <th scope="col">訂單編號</th>
@@ -56,7 +59,7 @@
             {% endfor %}
             </tbody>
             {% block deliver_order %}
-                <thead>
+                <thead id="table3">
                 <tr>
                     <th scope="col">訂單者</th>
                     <th scope="col">訂單編號</th>
