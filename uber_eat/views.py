@@ -18,10 +18,6 @@ from django.shortcuts import redirect
 import random
 from django.http import HttpResponse
 
-def show_product(Sid):
-    ProductList = Product.objects.filter(S_id=Sid).order_by('Pid')
-    return ProductList
-
 def show_store(request):
     StoreList = Store.objects.filter().all().order_by('Sid')
     return StoreList
@@ -61,7 +57,7 @@ def show_store_page(request):
             pass
     if request.method == 'GET':
         Storeinfo = Store.objects.get(Sid=request.GET['Sid'])
-        ProductList = show_product(Storeinfo.Sid)
+        ProductList = Product.objects.filter(S_id=Storeinfo.Sid).order_by('Pid')
     return render(request, 'store/Show_product.html', locals())
 
 
@@ -169,6 +165,50 @@ def add_order_post(request):
     price = price + Stransit_price
     addOrder = Order.objects.filter(Oid = oid).update(Oprice = price, Ocount = num)
     return redirect('/uber_eat/user_show_order')
+
+def del_order(request):
+    try:
+        if request.method == 'GET':
+            if Order.objects.get(Oid=request.GET['Oid'], Ostatus=1):
+                OrderGoods.objects.filter(O_id=request.GET['Oid']).delete()
+                Order.objects.filter(Oid=request.GET['Oid']).delete()
+    except:
+        pass
+    return redirect('/uber_eat/user_show_order')
+
+
+def store_page(request):
+    if request.user.is_authenticated:
+        username = request.user.username
+        Oid = request.GET['Oid']
+        try:
+            userinfo = User.objects.get(username=username)
+            order = Order.objects.get(Ostatus = 1, Oid=Oid)
+            Storeinfo = Store.objects.get(Sid=order.S_id)
+            if request.method == 'GET':
+                ProductList = Product.objects.filter(S_id=Storeinfo.Sid).order_by('Pid')
+                return render(request, 'orders/edit_order.html', locals())
+            else:
+                messages.add_message(request, messages.INFO, '請檢查輸入的欄位內容')
+        except:
+            messages.add_message(request, messages.INFO, '頁面錯誤')
+            return redirect('/')
+
+def edit_order(request):
+    OrderGoods.objects.filter(O_id=request.GET['Oid']).delete()
+    Stransit_price = Store.objects.get(Sid = request.GET['S']).Stransit_price
+    Plist = request.GET.getlist('P')
+    price = 0
+    num = 0
+    for item in Plist:
+        Pid = item.split(',')[0]
+        count = item.split(',')[1]
+        price = price + int(Product.objects.get(Pid = Pid).Pprice)*int(count)
+        num = num + int(count)
+        OrderGoods(O_id = request.GET['Oid'], P_id = Pid, OGcount = count).save()
+    price = price + Stransit_price
+    editOrder = Order.objects.filter(Oid = request.GET['Oid']).update(Oprice = price, Ocount = num)
+    return redirect('/uber_eat/user_show_order')    
 
 def mod_Ostatus_post(request):
     addOrder = Order.objects.filter(Oid = request.POST['O']).update(Ostatus = request.POST['Ostatus'])

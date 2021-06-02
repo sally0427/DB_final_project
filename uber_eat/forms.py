@@ -24,3 +24,6 @@ class LoginForm(forms.Form):
     username = forms.CharField(label='Email address', max_length=10)
     password = forms.CharField(label='password', widget=forms.PasswordInput())
 
+# class addOrderGoodsForm(forms.Form):
+#     Pid = forms.CharField(label='商品ID', max_length=10)
+#     Pcount = forms.CharField(label='商品數量', max_length=10)

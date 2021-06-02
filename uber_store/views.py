@@ -4,10 +4,10 @@ from django.shortcuts import render, redirect
 
 from django.urls import reverse
 
-from uber_eat.models import Order
+from uber_eat.models import Order,Product
 from uber_store import forms, models
 from django.contrib.auth.models import User
-from uber_eat.views import show_product
+# from uber_eat.views import show_product
 from django.contrib.auth.decorators import login_required
 
 
@@ -80,7 +80,7 @@ def store_page(request):
             Storeinfo = models.Store.objects.get(user=user)
             if Storeinfo is not None:
                 Sname = Storeinfo.Sname
-                ProductList = show_product(Storeinfo.Sid)
+                ProductList = Product.objects.filter(S_id=Storeinfo.Sid).order_by('Pid')
                 PhotoList = show_product_img(ProductList)
         except:
             pass
