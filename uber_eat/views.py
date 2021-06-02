@@ -132,10 +132,10 @@ def home(request):
                 pass
         except:
             pass
-        try:
-            data = search_store(request)
-        except:
-            data = show_store(request)
+    try:
+        data = search_store(request)
+    except:
+        data = show_store(request)
 
     return render(request, 'carousel/store_list.html', locals())
 
