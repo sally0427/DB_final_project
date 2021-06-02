@@ -28,8 +28,7 @@
                 {% endif %}
             </h1>
             <form action="" method="POST">
-                    <textarea name="Stype" class="col-md-8 col-sm-6" rows="3">
-                        {% if Storeinfo.Stype %}{{ Storeinfo.Stype }}{% endif %}
+                    <textarea name="Stype" class="col-md-8 col-sm-6">{% if Storeinfo.Stype %}{{ Storeinfo.Stype }}{% endif %}
                     </textarea>
                 <br>
                 輸入一些hashtag讓我們更好找到你！ 例如：＃pizza, #麵類食館 .....
