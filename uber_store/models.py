@@ -28,10 +28,6 @@ class Product(models.Model):
 
 
 class Photo(models.Model):
-    # def user_directory_path(instance, filename):
-    #     # file will be uploaded to MEDIA_ROOT/<Sid>/<Pid>
-    #     return '{0}/{1}'.format(instance, filename)
-    # user_directory_path
     P = models.ForeignKey(Product, on_delete=models.CASCADE)
     image = models.ImageField(upload_to='', blank=False, null=False)
     upload_date = models.DateField(default=timezone.now)
