@@ -25,8 +25,8 @@ def show_store(request):
 
 
 def search_store(request):
-    StoreList = Store.objects.filter(Sname__icontains=request.GET['Sname'],
-                                     Stype__icontains=request.GET['Sname']).all().order_by('Sid')
+    StoreList = (Store.objects.filter(Sname__icontains=request.GET['Sname']) | Store.objects.filter(
+        Stype__icontains=request.GET['Sname'])).all().order_by('Sid')
     return StoreList
 
 
