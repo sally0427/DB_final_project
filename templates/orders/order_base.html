@@ -61,6 +61,29 @@
                                 <th class="col-md-8">訂單總價</th>
                                 <td class="col-md-4">{{ order.Oprice }} </td>
                             </tr>
+                            {% if order.Ostatus == 1 %}
+                                <style>
+                                    .btn-clipboard {
+                                        position: static;
+                                        padding: .25rem .5rem;
+                                        font-size: .80em;
+                                    }
+                                </style>
+                                <td data-title='刪除訂單'>
+                                    <a href="/uber_eat/del_order/?Oid={{ order.Oid }}">
+                                        <button type="button" class="btn-clipboard btn btn-outline-info">
+                                            刪除訂單
+                                        </button>
+                                    </a>
+                                </td>
+                                <td data-title='修改訂單'>
+                                    <a href="/uber_eat/store_page/?Oid={{ order.Oid }}">
+                                        <button type="button" class="btn-clipboard btn btn-outline-info">
+                                            修改訂單
+                                        </button>
+                                    </a>
+                                </td>
+                            {% endif %}    
                             </tbody>
                         </table>
                     </div>

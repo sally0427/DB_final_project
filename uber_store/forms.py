@@ -1,5 +1,5 @@
 from django import forms
-from uber_store.models import Store, Product
+from uber_store.models import Store
 from django.core.exceptions import ValidationError
 
 
