@@ -67,8 +67,14 @@ def show_product_img(ProductList):
     q1.connector = 'OR'
     for product in ProductList:
         q1.children.append(('P_id', product.Pid))
-    PhotoList = models.Photo.objects.filter(q1).order_by('P_id')
-    return PhotoList
+    try:
+        PhotoList = models.Photo.objects.filter(q1).order_by('P_id')
+        return PhotoList
+    except:
+        print("pp")
+        messages.add_message( messages.INFO, '頁面錯誤')
+        return redirect('/')
+    
 
 
 @login_required(login_url='/uber_eat/login/')
@@ -81,7 +87,6 @@ def store_page(request):
             if Storeinfo is not None:
                 Sname = Storeinfo.Sname
                 ProductList = Product.objects.filter(S_id=Storeinfo.Sid).order_by('Pid')
-                PhotoList = show_product_img(ProductList)
                 if request.method == 'POST':
                     Storeinfo.Stype = request.POST['Stype']
                     Storeinfo.save()
@@ -128,8 +133,6 @@ def add_store_post(request):
             else:
                 form = forms.SignUpForm()
     return render(request, 'registration/store_registration.html', locals())
-    # Store.objects.create(Sname='test', Saddress='At Earth', Sphone='123456789')
-
 
 @login_required(login_url='/uber_eat/login/')
 def upload_product_img(request):
