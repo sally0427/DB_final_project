@@ -18,13 +18,21 @@ from django.shortcuts import redirect
 import random
 from django.http import HttpResponse
 
+
 def show_product(Sid):
     ProductList = Product.objects.filter(S_id=Sid).order_by('Pid')
     return ProductList
 
+
 def show_store(request):
     StoreList = Store.objects.filter().all().order_by('Sid')
     return StoreList
+
+
+def search_store(request):
+    StoreList = Store.objects.filter(Sname__icontains=request.GET['Sname']).all().order_by('Sid')
+    return StoreList
+
 
 @login_required(login_url='/uber_eat/login/')
 def user_show_order(request):
@@ -50,6 +58,7 @@ def user_show_order_deteil(request):
         except:
             pass
         return render(request, 'orders/order_base.html', locals())
+
 
 @login_required(login_url='/uber_eat/login/')
 def show_store_page(request):
@@ -127,7 +136,11 @@ def home(request):
                 pass
         except:
             pass
-    data = show_store(request)
+        if request.method == 'GET':
+            try:
+                data = search_store(request)
+            except:
+                data = show_store(request)
     return render(request, 'carousel/store_list.html', locals())
 
 
@@ -143,6 +156,7 @@ class SingUpView(CreateView):
     success_url = reverse_lazy('login')
     template_name = 'registration/user_registration.html'
 
+
 @login_required(login_url='/uber_eat/login/')
 def userinfo(request):
     if request.user.is_authenticated:
@@ -153,27 +167,30 @@ def userinfo(request):
             pass
     return render(request, 'userinfo.html', locals())
 
+
 def add_order_post(request):
-    oid = random.randint(0,10000000)
-    Stransit_price = Store.objects.get(Sid = request.GET['S']).Stransit_price
-    addOrder = Order(Oid = oid, C_id = request.GET['C'], S_id = request.GET['S']).save()
+    oid = random.randint(0, 10000000)
+    Stransit_price = Store.objects.get(Sid=request.GET['S']).Stransit_price
+    addOrder = Order(Oid=oid, C_id=request.GET['C'], S_id=request.GET['S']).save()
     Plist = request.GET.getlist('P')
     price = 0
     num = 0
     for item in Plist:
         Pid = item.split(',')[0]
         count = item.split(',')[1]
-        price = price + int(Product.objects.get(Pid = Pid).Pprice)*int(count)
+        price = price + int(Product.objects.get(Pid=Pid).Pprice) * int(count)
         num = num + int(count)
-        addOrdergoods = OrderGoods(O_id = oid, P_id = Pid, OGcount = count).save()
+        addOrdergoods = OrderGoods(O_id=oid, P_id=Pid, OGcount=count).save()
     price = price + Stransit_price
-    addOrder = Order.objects.filter(Oid = oid).update(Oprice = price, Ocount = num)
+    addOrder = Order.objects.filter(Oid=oid).update(Oprice=price, Ocount=num)
     return redirect('/uber_eat/user_show_order')
 
+
 def mod_Ostatus_post(request):
-    addOrder = Order.objects.filter(Oid = request.POST['O']).update(Ostatus = request.POST['Ostatus'])
+    addOrder = Order.objects.filter(Oid=request.POST['O']).update(Ostatus=request.POST['Ostatus'])
     return HttpResponse('<p>mod_Ostatus_post</p>')
 
+
 def mod_Odeliver_post(request):
-    addOrder = Order.objects.filter(Oid = request.POST['O']).update(D_id = request.POST['Odeliver'])
+    addOrder = Order.objects.filter(Oid=request.POST['O']).update(D_id=request.POST['Odeliver'])
     return HttpResponse('<p>mod_Odeliver_post</p>')
