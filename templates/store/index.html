@@ -346,11 +346,14 @@
                             {% block table3 %}{% endblock %}
                         </a>
                     </li>
+                    {% if Sname %}
                     <li class="nav-item right">
-                        {% if Sname %}
-                            <a class="nav-link" href="/uber_store">Store</a>
-                        {% endif %}
+                            <a class="nav-link" href="/uber_store">編輯商店</a>
                     </li>
+                    <li class="nav-item right">
+                            <a href="/uber_store/store_show_order" class="nav-link">查看訂單</a>
+                    </li>
+                    {% endif %}
                     <li class="nav-item right">
                         {% if Dname %}
                             <a class="nav-link" href="/uber_deliver/show_deliver_order/">Deliver</a>
@@ -360,10 +363,6 @@
                         <a class="nav-link" href="/uber_eat/user_show_order/">購物籃</a>
                     </li>
                 </ul>
-                <form class="d-flex">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                </form>
             </div>
         </div>
     </nav>

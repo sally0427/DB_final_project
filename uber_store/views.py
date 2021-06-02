@@ -75,13 +75,16 @@ def show_product_img(ProductList):
 def store_page(request):
     if request.user.is_authenticated:
         username = request.user.username
-        user = User.objects.get(username=username)
+        userinfo = User.objects.get(username=username)
         try:
-            Storeinfo = models.Store.objects.get(user=user)
+            Storeinfo = models.Store.objects.get(user=userinfo)
             if Storeinfo is not None:
                 Sname = Storeinfo.Sname
                 ProductList = show_product(Storeinfo.Sid)
                 PhotoList = show_product_img(ProductList)
+                if request.method == 'POST':
+                    Storeinfo.Stype = request.POST['Stype']
+                    Storeinfo.save()
         except:
             pass
     return render(request, 'store/Edit_product.html', locals())

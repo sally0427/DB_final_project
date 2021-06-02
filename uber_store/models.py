@@ -11,6 +11,7 @@ class Store(models.Model):
     Sname = models.CharField(max_length=20, null=True)
     Saddress = models.CharField(max_length=20, null=True)
     Sphone = models.CharField(max_length=20, null=True)
+    Stype = models.TextField(null=True, default=None)
     Stransit_price = models.DecimalField(max_digits=10, decimal_places=2, default='30')
     image = models.ImageField(upload_to='product_image/', blank=False, null=True, default=None)
     def __str__(self):
@@ -27,11 +28,3 @@ class Product(models.Model):
     upload_date = models.DateField(default=timezone.now)
 
 
-class Photo(models.Model):
-    # def user_directory_path(instance, filename):
-    #     # file will be uploaded to MEDIA_ROOT/<Sid>/<Pid>
-    #     return '{0}/{1}'.format(instance, filename)
-    # user_directory_path
-    P = models.ForeignKey(Product, on_delete=models.CASCADE)
-    image = models.ImageField(upload_to='', blank=False, null=False)
-    upload_date = models.DateField(default=timezone.now)

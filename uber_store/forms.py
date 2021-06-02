@@ -1,5 +1,5 @@
 from django import forms
-from uber_store.models import Store, Product, Photo
+from uber_store.models import Store, Product
 from django.core.exceptions import ValidationError
 
 
@@ -26,7 +26,7 @@ class addProductForm(forms.Form):
 class UploadModelForm(forms.ModelForm):
     image = forms.FileInput(attrs={'class': 'form-control-file'})
     class Meta:
-        model = Photo
+        model = Store
         fields = ['image']
         widgets = {
             'image': forms.FileInput(attrs={'class': 'form-control-file'}),
