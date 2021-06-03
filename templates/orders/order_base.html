@@ -62,6 +62,7 @@
                                 <td class="col-md-4">{{ order.Oprice }} </td>
                             </tr>
                             {% if order.Ostatus == 1 %}
+                            {% if userinfo.id == order.C_id %}
                                 <style>
                                     .btn-clipboard {
                                         position: static;
@@ -83,6 +84,7 @@
                                         </button>
                                     </a>
                                 </td>
+                            {% endif %}
                             {% endif %}    
                             </tbody>
                         </table>
