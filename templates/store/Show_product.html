@@ -4,11 +4,27 @@
     <section class="py-5 text-center container">
         <div class="row py-lg-5">
             <div class="col-lg-6 col-md-8 mx-auto">
+                <div class="center">
+                    {% if Storeinfo.image %}
+                    <img class="bd-placeholder-img rounded-circle" src="{{ Storeinfo.image.url }}" width="140"
+                         height="140" role="img">
+                    {% else %}
+                    <svg class="bd-placeholder-img rounded-circle" src="static/index_blade.jpg" width="140"
+                         height="140" xmlns="http://www.w3.org/2000/svg" role="img"
+                         aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice"
+                         focusable="false">
+                        <title>Placeholder</title>
+                        <rect width="100%" height="100%" fill="#777"/>
+                        <text x="50%" y="50%" fill="#777" dy=".3em">140x140</text>
+                    </svg>
+                    {% endif %}
+                </div><!-- /.row -->
                 <h1 class="fw-light">
                     {% if Storeinfo %}
                         {{ Storeinfo.Sname }}
                     {% endif %}
                 </h1>
+                {{ Storeinfo.Stype }}
             </div>
         </div>
     </section>
